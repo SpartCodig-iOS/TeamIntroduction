@@ -30,6 +30,18 @@ struct IntroductionMainView: View {
                         IntroductionRowView(model: model)
                     }
                 }
+                
+                VStack {
+                    Text("더 알아보기")
+                        .pretendardFont(family: .Bold, size: 14)
+                        .foregroundStyle(.textPrimary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 8)
+                    
+                    ForEach(TeamExploreItem.allCases) { item in
+                        TeamExploreRowView(item: item)
+                    }
+                }
             }
             .padding(.horizontal, 16)
             .onAppear {
