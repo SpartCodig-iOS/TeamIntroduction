@@ -18,7 +18,7 @@ struct ContentView: View {
     VStack {
       Text("main")
         .onTapGesture {
-          coordinator.send(.presntDetail)
+          coordinator.send(.present(.teamAgreement))
         }
     }
   }
