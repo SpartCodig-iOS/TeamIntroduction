@@ -59,9 +59,35 @@ extension ContentView {
       HStack {
         Text("더 알아보기")
           .pretendardFont(family:.SemiBold, size: 20)
+          .foregroundStyle(.basicBlack)
+
+        Spacer()
 
       }
+
+      Spacer()
+        .frame(height: 14)
+
+
+      ForEach(MoreInfoItem.moreInfoList, id: \.self) { item in
+        VStack {
+          ListRowComponet(
+            color: item.color,
+            image: item.images,
+            title: item.titleContent,
+            subContent: item.subtitleContent,
+            blogUrl: "",
+            showArrow: true,
+            arrowAction: {
+
+            }
+          )
+          .padding(.vertical, 3)
+        }
+      }
+
     }
+    .padding(.horizontal, 24)
   }
 }
 

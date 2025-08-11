@@ -100,6 +100,10 @@ extension ShapeStyle where Self == Color {
   static var gray600: Color { .init(hex: "808080") }
   static var gray800: Color { .init(hex: "4D4D4D") }
 
+  static var green: Color { .init(hex: "00A63E") }
+  static var lightPurple: Color { .init(hex: "9810FA") }
+
+
   static var error: Color { .init(hex: "FF5050") }
   static var basicBlue: Color { .init(hex: "0099FF") }
 

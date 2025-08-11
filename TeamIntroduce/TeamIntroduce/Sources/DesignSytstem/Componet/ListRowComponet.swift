@@ -8,35 +8,54 @@
 import SwiftUI
 
 struct ListRowComponet: View {
-  var color: Color
-  var image: ImageAsset
-  var title: String
-  var subContent: String
-  var blogUrl: String
-  var showArrow: Bool
+  private var color: Color
+  private var image: ImageAsset
+  private var title: String
+  private var subContent: String
+  private var blogUrl: String
+  private var showArrow: Bool
+  private var arrowAction: () -> Void = {}
+
+  init(
+    color: Color,
+    image: ImageAsset,
+    title: String,
+    subContent: String,
+    blogUrl: String,
+    showArrow: Bool,
+    arrowAction: @escaping () -> Void
+  ) {
+    self.color = color
+    self.image = image
+    self.title = title
+    self.subContent = subContent
+    self.blogUrl = blogUrl
+    self.showArrow = showArrow
+    self.arrowAction = arrowAction
+  }
 
     var body: some View {
       VStack {
         HStack {
           Circle()
-            .fill(.white)
+            .fill(color)
             .frame(width: 35, height: 35)
             .overlay {
-              Image(asset: .people)
+              Image(asset: image)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 20, height: 20)
             }
 
           VStack(alignment: .leading, spacing: .zero) {
-            Text("팀소개")
+            Text(title)
               .pretendardFont(family: .SemiBold, size: 14)
               .foregroundStyle(.basicBlack)
 
             Spacer()
               .frame(height: 4)
 
-            Text("우리 팀의 특징과 목표")
+            Text(subContent)
               .pretendardFont(family: .Regular, size: 12)
               .foregroundStyle(.textSecondary)
 
@@ -57,7 +76,7 @@ struct ListRowComponet: View {
               .scaledToFit()
               .frame(width: 12, height: 12)
               .onTapGesture {
-
+                arrowAction()
               }
           }
 
@@ -83,6 +102,7 @@ struct ListRowComponet: View {
     title: "팀소개",
     subContent: "우리 팀의 특징과 목표",
     blogUrl: "",
-    showArrow: true
+    showArrow: true,
+    arrowAction: {}
   )
 }

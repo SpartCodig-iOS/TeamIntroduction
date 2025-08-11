@@ -10,4 +10,6 @@ import Foundation
 enum ImageAsset: String {
   case people
   case rightArrow
+  case blog
+  case check
 }
