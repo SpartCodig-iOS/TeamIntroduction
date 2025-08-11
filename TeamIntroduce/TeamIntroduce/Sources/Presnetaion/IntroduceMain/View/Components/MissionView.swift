@@ -21,6 +21,7 @@ struct MissionView: View {
                 .pretendardFont(family: .Regular, size: 12)
                 .foregroundStyle(.textSecondary)
         }
+        .frame(maxWidth: .infinity)
         .padding(16)
         .background(Color(hex: "E9EBEF"))
         .clipShape(RoundedRectangle(cornerRadius: 12))
