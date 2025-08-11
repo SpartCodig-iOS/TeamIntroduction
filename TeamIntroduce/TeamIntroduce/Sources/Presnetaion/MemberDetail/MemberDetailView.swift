@@ -23,7 +23,7 @@ struct MemberDetailView: View {
         VStack(spacing: 20) {
             MemberProfileView(profile: MemberProfile())
 
-            introductionView(profile: MemberProfile())
+            IntroductionView(profile: MemberProfile())
         }
         .padding(.horizontal, 14)
     }
@@ -61,7 +61,7 @@ struct MemberProfileView: View {
     }
 }
 
-struct introductionView: View {
+struct IntroductionView: View {
     let profile: MemberProfile
 
     var body: some View {
