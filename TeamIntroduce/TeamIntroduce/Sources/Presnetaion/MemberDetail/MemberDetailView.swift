@@ -24,6 +24,8 @@ struct MemberDetailView: View {
             MemberProfileView(profile: MemberProfile())
 
             IntroductionView(profile: MemberProfile())
+
+            StrengthsView(profile: MemberProfile())
         }
         .padding(.horizontal, 14)
     }
@@ -37,17 +39,17 @@ struct MemberProfileView: View {
             Spacer()
 
             VStack(spacing: 7) {
-                Image(systemName: MemberProfile().image)
+                Image(systemName: profile.image)
                     .font(.system(size: 40))
 
-                Text(MemberProfile().name)
+                Text(profile.name)
                     .pretendardFont(family: .Regular, size: 13)
 
-                Text(MemberProfile().role)
+                Text(profile.role)
                     .pretendardFont(family: .Regular, size: 13)
 
 
-                Text(MemberProfile().mbti)
+                Text(profile.mbti)
                     .pretendardFont(family: .Regular, size: 13)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
@@ -69,10 +71,35 @@ struct IntroductionView: View {
             Text("자기소개")
                 .pretendardFont(family: .SemiBold, size: 14)
             VStack {
-                Text(MemberProfile().introduction)
+                Text(profile.introduction)
                     .pretendardFont(family: .Regular, size: 13)
                     .lineSpacing(3)
             }
+            .padding(.all, 5)
+            .cardStyle()
+        }
+    }
+}
+
+struct StrengthsView: View {
+    let profile: MemberProfile
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("주요장점")
+                .pretendardFont(family: .SemiBold, size: 14)
+            VStack {
+                ForEach(profile.strengths, id: \.self) { item in
+                    HStack(alignment: .firstTextBaseline, spacing: 8) {
+                        Circle().frame(width: 5, height: 5)
+                        Text(item)
+                            .pretendardFont(family: .Regular, size: 13)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+            .padding(.all, 5)
             .cardStyle()
         }
     }
