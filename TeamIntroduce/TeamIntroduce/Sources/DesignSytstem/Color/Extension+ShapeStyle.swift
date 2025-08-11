@@ -28,7 +28,7 @@ extension ShapeStyle where Self == Color {
 
   // MARK: - Static Border
 
-  static var borderInactive: Color { .init(hex: "C6C6C6") }
+    static var borderInactive: Color { .init(hex: "000000").opacity(0.05) }
   static var borderDisabled: Color { .init(hex: "323537") }
   static var borderInverse: Color { .init(hex: "202325") }
 
@@ -58,6 +58,9 @@ extension ShapeStyle where Self == Color {
   static var surfaceDisable: Color { .init(hex: "808080") }
   static var surfaceEnable: Color { .init(hex: "0099FF") }
   static var surfaceError: Color { .init(hex: "FF5050").opacity(0.2) }
+
+  //MARK: -Shadow
+    static var shadowDefault: Color { .init(hex: "000000").opacity(0.1) }
 
   // MARK: - TextIcon
 
