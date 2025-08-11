@@ -20,12 +20,12 @@ struct MemberProfile {
 
 struct MemberDetailView: View {
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             MemberProfileView(profile: MemberProfile())
-                .cardStyle()
+
+            introductionView(profile: MemberProfile())
         }
         .padding(.horizontal, 14)
-
     }
 }
 
@@ -41,19 +41,39 @@ struct MemberProfileView: View {
                     .font(.system(size: 40))
 
                 Text(MemberProfile().name)
+                    .pretendardFont(family: .Regular, size: 13)
 
                 Text(MemberProfile().role)
+                    .pretendardFont(family: .Regular, size: 13)
 
 
                 Text(MemberProfile().mbti)
-                    .font(.footnote.weight(.semibold))
+                    .pretendardFont(family: .Regular, size: 13)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
-                    .background(Capsule().fill(.backGroundPrimary.opacity(0.15)))
+                    .background(Capsule().fill(.gray20))
             }
             .padding(.vertical, 10)
 
             Spacer()
+        }
+        .cardStyle()
+    }
+}
+
+struct introductionView: View {
+    let profile: MemberProfile
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("자기소개")
+                .pretendardFont(family: .SemiBold, size: 14)
+            VStack {
+                Text(MemberProfile().introduction)
+                    .pretendardFont(family: .Regular, size: 13)
+                    .lineSpacing(3)
+            }
+            .cardStyle()
         }
     }
 }
