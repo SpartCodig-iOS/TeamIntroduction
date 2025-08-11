@@ -15,11 +15,23 @@ struct ContentView: View {
 
 
   var body: some View {
-    VStack {
-      Text("main")
-        .onTapGesture {
-          coordinator.send(.presntDetail)
-        }
+    ZStack {
+      Color.white
+        .edgesIgnoringSafeArea(.all)
+
+      VStack {
+        Text("main")
+          .onTapGesture {
+            coordinator.send(.presntDetail)
+          }
+
+        Spacer()
+
+        moreInfoSection()
+
+        Spacer()
+          .frame(height: 20)
+      }
     }
   }
 
@@ -34,6 +46,20 @@ struct ContentView: View {
     withAnimation {
       for index in offsets {
         modelContext.delete(items[index])
+      }
+    }
+  }
+}
+
+
+extension ContentView {
+  @ViewBuilder
+  private func moreInfoSection() -> some View {
+    VStack {
+      HStack {
+        Text("더 알아보기")
+          .pretendardFont(family:.SemiBold, size: 20)
+
       }
     }
   }

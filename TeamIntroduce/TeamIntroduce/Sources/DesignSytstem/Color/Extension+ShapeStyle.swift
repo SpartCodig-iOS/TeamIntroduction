@@ -13,12 +13,13 @@ extension ShapeStyle where Self == Color {
 
   static var staticWhite: Color { .init(hex: "FFFFFF") }
   static var staticBlack: Color { .init(hex: "0C0E0F") }
+  static var shadowColor: Color { .init(hex: "000000")}
 
   // MARK: - Static Text
 
   static var textPrimary: Color { .init(hex: "FFFFFF") }
-  static var textSecondary: Color { .init(hex: "EAEAEA") }
-  static var textSecondary100: Color { .init(hex: "525252") }
+  static var textSecondary: Color { .init(hex: "717182") }
+  static var textSecondary100: Color { .init(hex: "171725") }
   static var textInactive: Color { .init(hex: "70737C47").opacity(0.28) }
 
   // MARK: - Static Background
@@ -68,7 +69,7 @@ extension ShapeStyle where Self == Color {
 
   // MARK: - NatureBlue
 
-  static var blue10: Color { .init(hex: "F5F8FF") }
+  static var blue10: Color { .init(hex: "155DFC") }
   static var blue20: Color { .init(hex: "E1EAFF") }
   static var blue30: Color { .init(hex: "C1D3FF") }
   static var blue40: Color { .init(hex: "0D82F9") }

@@ -8,11 +8,81 @@
 import SwiftUI
 
 struct ListRowComponet: View {
+  var color: Color
+  var image: ImageAsset
+  var title: String
+  var subContent: String
+  var blogUrl: String
+  var showArrow: Bool
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      VStack {
+        HStack {
+          Circle()
+            .fill(.white)
+            .frame(width: 35, height: 35)
+            .overlay {
+              Image(asset: .people)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 20, height: 20)
+            }
+
+          VStack(alignment: .leading, spacing: .zero) {
+            Text("팀소개")
+              .pretendardFont(family: .SemiBold, size: 14)
+              .foregroundStyle(.basicBlack)
+
+            Spacer()
+              .frame(height: 4)
+
+            Text("우리 팀의 특징과 목표")
+              .pretendardFont(family: .Regular, size: 12)
+              .foregroundStyle(.textSecondary)
+
+            if !blogUrl.isEmpty {
+              Text(blogUrl)
+                .pretendardFont(family: .Regular, size: 10)
+                .foregroundStyle(.textSecondary100)
+            }
+
+
+          }
+
+          Spacer()
+
+          if showArrow {
+            Image(asset: .rightArrow)
+              .resizable()
+              .scaledToFit()
+              .frame(width: 12, height: 12)
+              .onTapGesture {
+
+              }
+          }
+
+
+        }
+      }
+      .padding(.vertical, 16)
+      .padding(.horizontal, 15)
+      .frame(height: 69)
+      .background(
+        RoundedRectangle(cornerRadius: 12)
+          .fill(.staticWhite)
+          .shadow( color: .shadowColor, radius: 1)
+      )
+
     }
 }
 
 #Preview {
-    ListRowComponet()
+  ListRowComponet(
+    color: .blue10,
+    image: .people,
+    title: "팀소개",
+    subContent: "우리 팀의 특징과 목표",
+    blogUrl: "",
+    showArrow: true
+  )
 }

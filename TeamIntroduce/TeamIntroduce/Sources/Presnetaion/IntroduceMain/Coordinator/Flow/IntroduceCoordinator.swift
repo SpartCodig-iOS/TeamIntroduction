@@ -45,7 +45,6 @@ final class IntroduceCoordinator: NavigationControlling, ObservableObject {
   }
 
   // MARK: - NavigationControlling 요구 구현
-
   func start() {
     reset()
     send(.presentMain)
