@@ -44,6 +44,7 @@ extension ShapeStyle where Self == Color {
   static var gray80: Color { .init(hex: "323537") }
   static var gray60: Color { .init(hex: "6F6F6F") }
   static var gray40: Color { .init(hex: "A8A8A8") }
+  static var gray20: Color { .init(hex: "ededed") }
   static var gray90: Color { .init(hex: "202325") }
   static var grayError: Color { .init(hex: "FF5050") }
   static var grayWhite: Color { .init(hex: "FFFFFF") }
