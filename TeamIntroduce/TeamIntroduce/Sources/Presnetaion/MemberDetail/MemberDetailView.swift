@@ -8,24 +8,53 @@
 import SwiftUI
 
 struct MemberProfile {
-    var image: String
-    var name: String
-    var role: String
-    var mbti: String
-    var introduction: String
-    var strengths: [String]
-    var collabStyle: String
-    var blogURL: String?
+    var image: String = "person.crop.circle"
+    var name: String = "김철수"
+    var role: String = "프론트엔드개발자"
+    var mbti: String = "ENFP"
+    var introduction: String = "사용자경험을최우선으로생각하는프론트엔드개발자입니다.새로운기술을배우는것을좋아하고，팀원들과아이디어를 공유하며함께성장하는것을즐깁니다."
+    var strengths: [String] = ["창의적인문제해결능력", "새로운기술에대한빠른학습력", "사용자중심적사고", "긍정적이고적극적인커뮤니케이션"]
+    var collabStyle: String = "아이디어클자유롭게공유하고，다양한관점에서문제를바라보는것을 선호합니다.팀원들의의견을경청하고，함께더나은해결책을찾아가는협업을추구합니다."
+    var blogURL: String? = "https: //chulsoo.dev"
 }
 
 struct MemberDetailView: View {
+    var body: some View {
+        VStack {
+            MemberProfileView(profile: MemberProfile())
+                .cardStyle()
+        }
+        .padding(.horizontal, 14)
+
+    }
+}
+
+struct MemberProfileView: View {
     let profile: MemberProfile
 
     var body: some View {
-        VStack {
+        HStack {
+            Spacer()
 
+            VStack(spacing: 7) {
+                Image(systemName: MemberProfile().image)
+                    .font(.system(size: 40))
+
+                Text(MemberProfile().name)
+
+                Text(MemberProfile().role)
+
+
+                Text(MemberProfile().mbti)
+                    .font(.footnote.weight(.semibold))
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Capsule().fill(.backGroundPrimary.opacity(0.15)))
+            }
+            .padding(.vertical, 10)
+
+            Spacer()
         }
-
     }
 }
 
@@ -54,6 +83,6 @@ extension View {
 
 struct MemberDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MemberDetailView(profile: .init(image: "", name: "", role: "", mbti: "", introduction: "", strengths: [], collabStyle: ""))
+        MemberDetailView()
     }
 }
