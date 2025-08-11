@@ -25,9 +25,14 @@ struct IntroductionMainView: View {
                         .foregroundStyle(.textPrimary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 8)
-                    
-                    ForEach(viewModel.introductions) { model in
-                        IntroductionRowView(model: model)
+                    if viewModel.isLoading {
+                        ForEach(0..<3, id: \.self) { _ in
+                            SkeletonRowView()
+                        }
+                    } else {
+                        ForEach(viewModel.introductions) { model in
+                            IntroductionRowView(model: model)
+                        }
                     }
                 }
                 
