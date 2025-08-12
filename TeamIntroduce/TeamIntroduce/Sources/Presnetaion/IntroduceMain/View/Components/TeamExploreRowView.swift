@@ -36,6 +36,17 @@ enum TeamExploreItem: CaseIterable, Identifiable {
             return "팀원들의 블로그 모음"
         }
     }
+    
+    var imageName: String {
+        switch self {
+        case .introduction:
+            return "TeamIntroductionLogo"
+        case .agreement:
+            return "TeamAgreementLogo"
+        case .blog:
+            return "TeamBlogLogo"
+        }
+    }
 }
 
 struct TeamExploreRowView: View {
@@ -48,7 +59,7 @@ struct TeamExploreRowView: View {
     
     var body: some View {
         HStack {
-            Circle()
+            Image(item.imageName)
                 .frame(width: 42, height: 42)
             VStack(alignment: .leading, spacing: 4) {
                 Text(item.title)
