@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 @MainActor
-class IntroductionViewModel: ObservableObject {
+final class IntroductionViewModel: ObservableObject {
     
     // MARK: - Published Properties
     @Published private(set) var introductions: [IntroductionRowModel] = []
