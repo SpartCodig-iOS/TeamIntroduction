@@ -20,18 +20,22 @@ struct MemberProfile {
 
 struct MemberDetailView: View {
     var body: some View {
-        VStack(spacing: 20) {
-            MemberProfileView(profile: MemberProfile())
+        ScrollView {
+            VStack(spacing: 20) {
+                MemberProfileView(profile: MemberProfile())
 
-            IntroductionView(profile: MemberProfile())
+                IntroductionView(profile: MemberProfile())
 
-            StrengthsView(profile: MemberProfile())
+                StrengthsView(profile: MemberProfile())
 
-            CollabStyleView(profile: MemberProfile())
+                CollabStyleView(profile: MemberProfile())
 
-            blogView(profile: MemberProfile())
+                BlogView(profile: MemberProfile())
+
+                editButton()
+            }
+            .padding(.horizontal, 14)
         }
-        .padding(.horizontal, 14)
     }
 }
 
@@ -140,6 +144,19 @@ struct BlogView: View {
             }
             .cardStyle()
         }
+    }
+}
+
+struct editButton: View {
+    var body: some View {
+        Button(action: {}) {
+            Text("수정")
+                .foregroundColor(.white)
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 48)
+        .background(.backGroundPrimary)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 }
 
