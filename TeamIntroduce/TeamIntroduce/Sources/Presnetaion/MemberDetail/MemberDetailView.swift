@@ -19,18 +19,20 @@ struct MemberProfile {
 }
 
 struct MemberDetailView: View {
+    private let profile = MemberProfile()
+
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                MemberProfileView(profile: MemberProfile())
+                MemberProfileView(profile: profile)
 
-                IntroductionView(profile: MemberProfile())
+                IntroductionView(profile: profile)
 
-                StrengthsView(profile: MemberProfile())
+                StrengthsView(profile: profile)
 
-                CollabStyleView(profile: MemberProfile())
+                CollabStyleView(profile: profile)
 
-                BlogView(profile: MemberProfile())
+                BlogView(profile: profile)
 
                 editButton()
             }
