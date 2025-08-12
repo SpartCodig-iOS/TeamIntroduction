@@ -14,8 +14,8 @@ struct MemberProfile {
     var mbti: String = "ENFP"
     var introduction: String = "사용자경험을최우선으로생각하는프론트엔드개발자입니다.새로운기술을배우는것을좋아하고，팀원들과아이디어를 공유하며함께성장하는것을즐깁니다."
     var strengths: [String] = ["창의적인문제해결능력", "새로운기술에대한빠른학습력", "사용자중심적사고", "긍정적이고적극적인커뮤니케이션"]
-    var collabStyle: String = "아이디어클자유롭게공유하고，다양한관점에서문제를바라보는것을 선호합니다.팀원들의의견을경청하고，함께더나은해결책을찾아가는협업을추구합니다."
-    var blogURL: String? = "https: //chulsoo.dev"
+    var collabStyle: String = "아이디어를 자유롭게공유하고，다양한관점에서문제를바라보는것을 선호합니다.팀원들의의견을경청하고，함께더나은해결책을찾아가는협업을추구합니다."
+    var blogURL: String = "https: //chulsoo.dev"
 }
 
 struct MemberDetailView: View {
@@ -26,6 +26,10 @@ struct MemberDetailView: View {
             IntroductionView(profile: MemberProfile())
 
             StrengthsView(profile: MemberProfile())
+
+            CollabStyleView(profile: MemberProfile())
+
+            blogView(profile: MemberProfile())
         }
         .padding(.horizontal, 14)
     }
@@ -47,6 +51,7 @@ struct MemberProfileView: View {
 
                 Text(profile.role)
                     .pretendardFont(family: .Regular, size: 13)
+                    .foregroundStyle(.textSecondary100)
 
 
                 Text(profile.mbti)
@@ -55,7 +60,6 @@ struct MemberProfileView: View {
                     .padding(.vertical, 6)
                     .background(Capsule().fill(.gray20))
             }
-            .padding(.vertical, 10)
 
             Spacer()
         }
@@ -73,9 +77,9 @@ struct IntroductionView: View {
             VStack {
                 Text(profile.introduction)
                     .pretendardFont(family: .Regular, size: 13)
-                    .lineSpacing(3)
+                    .foregroundStyle(.textSecondary100)
+                    .lineSpacing(5)
             }
-            .padding(.all, 5)
             .cardStyle()
         }
     }
@@ -94,12 +98,46 @@ struct StrengthsView: View {
                         Circle().frame(width: 5, height: 5)
                         Text(item)
                             .pretendardFont(family: .Regular, size: 13)
+                            .foregroundStyle(.textSecondary100)
                             .fixedSize(horizontal: false, vertical: true)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
-            .padding(.all, 5)
+            .cardStyle()
+        }
+    }
+}
+
+struct CollabStyleView: View {
+    let profile: MemberProfile
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("협업스타일")
+                .pretendardFont(family: .SemiBold, size: 14)
+            VStack {
+                Text(profile.collabStyle)
+                    .pretendardFont(family: .Regular, size: 13)
+                    .foregroundStyle(.textSecondary100)
+                    .lineSpacing(5)
+            }
+            .cardStyle()
+        }
+    }
+}
+
+struct blogView: View {
+    let profile: MemberProfile
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("블로그")
+                .pretendardFont(family: .SemiBold, size: 14)
+            VStack {
+                Text(profile.blogURL)
+                    .pretendardFont(family: .Regular, size: 13)
+            }
             .cardStyle()
         }
     }
@@ -108,7 +146,7 @@ struct StrengthsView: View {
 struct CardStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .padding(10)
+            .padding(15)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: 16)
