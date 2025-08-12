@@ -42,7 +42,8 @@ extension IntorduceCoordinatorView {
     case .teamAgreement:
       ContentView()
     case .teamIntroduce:
-      EmptyView()
+      TeamIntroduceView()
+        .navigationBarBackButtonHidden()
     case .teamBlog:
       TeamBlogView(viewModel: .init(coordinator: coordinator))
         .navigationBarBackButtonHidden()
