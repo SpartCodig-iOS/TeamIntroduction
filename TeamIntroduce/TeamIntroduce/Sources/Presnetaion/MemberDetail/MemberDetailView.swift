@@ -80,13 +80,11 @@ struct IntroductionView: View {
         VStack(alignment: .leading, spacing: 14) {
             Text("자기소개")
                 .pretendardFont(family: .SemiBold, size: 14)
-            VStack {
-                Text(profile.introduction)
-                    .pretendardFont(family: .Regular, size: 13)
-                    .foregroundStyle(.textSecondary100)
-                    .lineSpacing(5)
-            }
-            .cardStyle()
+            Text(profile.introduction)
+                .pretendardFont(family: .Regular, size: 13)
+                .foregroundStyle(.textSecondary100)
+                .lineSpacing(5)
+                .cardStyle()
         }
     }
 }
@@ -122,13 +120,11 @@ struct CollabStyleView: View {
         VStack(alignment: .leading, spacing: 14) {
             Text("협업스타일")
                 .pretendardFont(family: .SemiBold, size: 14)
-            VStack {
-                Text(profile.collabStyle)
-                    .pretendardFont(family: .Regular, size: 13)
-                    .foregroundStyle(.textSecondary100)
-                    .lineSpacing(5)
-            }
-            .cardStyle()
+            Text(profile.collabStyle)
+                .pretendardFont(family: .Regular, size: 13)
+                .foregroundStyle(.textSecondary100)
+                .lineSpacing(5)
+                .cardStyle()
         }
     }
 }
@@ -140,11 +136,11 @@ struct BlogView: View {
         VStack(alignment: .leading, spacing: 14) {
             Text("블로그")
                 .pretendardFont(family: .SemiBold, size: 14)
-            VStack {
-                Text(profile.blogURL)
-                    .pretendardFont(family: .Regular, size: 13)
-            }
-            .cardStyle()
+
+            Text(profile.blogURL)
+                .pretendardFont(family: .Regular, size: 13)
+                .cardStyle()
+
         }
     }
 }
