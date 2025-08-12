@@ -14,7 +14,6 @@ struct TeamBlogView: View {
   @Bindable var viewModel: TeamBlogViewModel
 
   // 현재까지 보여줄 수 있는 최대 인덱스
-  @State private var currentMaxIndex: Int = -1
 
   init(viewModel: TeamBlogViewModel) {
     self.viewModel = viewModel
@@ -125,14 +124,14 @@ extension TeamBlogView {
             viewModel.send(.presentWebView(url: link))
           }
           // 👉 순차 애니메이션
-          .opacity(index <= currentMaxIndex ? 1 : 0)
-          .offset(y: index <= currentMaxIndex ? 0 : 20)
+          .opacity(index <= viewModel.currentMaxIndex ? 1 : 0)
+          .offset(y: index <= viewModel.currentMaxIndex ? 0 : 20)
           .onAppear {
-            guard index > currentMaxIndex else { return }
-            let delay = 0.6 + 0.5 * Double(index) // 각 카드 간 간격 늘림
+            guard index > viewModel.currentMaxIndex else { return }
+            let delay = 0.5 + 0.2 * Double(index) // 각 카드 간 간격 늘림
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
               withAnimation(.spring(response: 0.8, dampingFraction: 0.85)) {
-                currentMaxIndex = index
+                viewModel.currentMaxIndex = index
               }
             }
           }

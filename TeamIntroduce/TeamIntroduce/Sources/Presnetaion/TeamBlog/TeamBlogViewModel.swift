@@ -12,6 +12,7 @@ import Combine
 @Observable
 final class TeamBlogViewModel {
   private(set) var isLoading = false
+  var currentMaxIndex: Int = -1
 
   private let route: (IntroduceCoordinator.Action) -> Void
 
@@ -56,7 +57,7 @@ final class TeamBlogViewModel {
   private func fetchIntroductions() async {
     isLoading = true
     Task {
-      try await Task.sleep(for: .seconds(0.4))
+      try await Task.sleep(for: .seconds(0.3))
 
       isLoading = false
     }
