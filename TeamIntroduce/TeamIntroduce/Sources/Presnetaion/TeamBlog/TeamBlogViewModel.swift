@@ -15,6 +15,17 @@ final class TeamBlogViewModel {
   var currentMaxIndex: Int = -1
 
   private let route: (IntroduceCoordinator.Action) -> Void
+  let blogs: [BlogItem] = [
+    .init(name: "김민희",
+          blogTitle: "모바일개발과 크로스플랫폼 기술을 공유합니다",
+          blogLink: "https://0minnie0.tistory.com/"),
+    .init(name: "서원지",
+          blogTitle: "모바일개발과 크로스플랫폼 기술을 공유합니다",
+          blogLink: "https://velog.io/@suhwj/posts"),
+    .init(name: "홍석현",
+          blogTitle: "모바일개발과 크로스플랫폼 기술을 공유합니다",
+          blogLink: "https://velog.io/@gustjrghd/posts")
+  ]
 
 
 
