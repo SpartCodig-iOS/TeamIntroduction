@@ -34,7 +34,7 @@ struct MemberDetailView: View {
 
                 BlogView(profile: profile)
 
-                editButton()
+                EditButton()
             }
             .padding(.horizontal, 14)
         }
@@ -145,7 +145,7 @@ struct BlogView: View {
     }
 }
 
-struct editButton: View {
+struct EditButton: View {
     var body: some View {
         Button(action: {}) {
             Text("수정")
