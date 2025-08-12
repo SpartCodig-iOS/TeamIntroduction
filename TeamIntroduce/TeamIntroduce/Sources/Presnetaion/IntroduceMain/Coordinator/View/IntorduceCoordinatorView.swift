@@ -44,7 +44,11 @@ extension IntorduceCoordinatorView {
     case .teamIntroduce:
       EmptyView()
     case .teamBlog:
-      EmptyView()
+      TeamBlogView()
+        .navigationBarBackButtonHidden()
+
+    case .webView(let url):
+      WebView(url: url)
     }
   }
 }

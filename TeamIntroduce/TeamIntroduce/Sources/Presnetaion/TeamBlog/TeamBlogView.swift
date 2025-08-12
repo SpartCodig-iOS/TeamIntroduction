@@ -8,9 +8,217 @@
 import SwiftUI
 
 struct TeamBlogView: View {
+@EnvironmentObject var coordinator: IntroduceCoordinator
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      ZStack {
+        Color.white
+          .edgesIgnoringSafeArea(.all)
+
+
+        VStack {
+          Spacer()
+            .frame(height: 14)
+
+          CustomNavigationBackBar(text: "팀블로그") {
+            coordinator.goBack()
+          }
+
+          Spacer()
+            .frame(height: 20)
+
+          blogHeaderView()
+
+          Spacer()
+            .frame(height: 10)
+
+          blogList()
+
+
+          Spacer()
+
+          blogHintBanner()
+
+          Spacer()
+            .frame(height: 30)
+        }
+      }
     }
+}
+
+extension TeamBlogView {
+
+  @ViewBuilder
+  private func blogHeaderView() -> some View {
+    VStack(alignment: .center) {
+      Spacer()
+        .frame(height: 16)
+
+
+    Circle()
+        .fill(.gray40)
+        .frame(width: 56, height: 56)
+        .overlay {
+          Image(asset: .glabal)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 30, height: 30)
+
+        }
+
+      Spacer()
+        .frame(height: 10)
+
+      HStack {
+
+        Spacer()
+
+        Text("팀원들의 블로그")
+          .pretendardFont(family: .Regular, size: 13)
+          .foregroundStyle(.staticBlack)
+
+        Spacer()
+      }
+
+      Spacer()
+        .frame(height: 10)
+
+      Text("각자 공부한 내용및  경험을 공유 하는 공간입니다.")
+        .pretendardFont(family: .Regular, size: 13)
+        .foregroundStyle(.blueGray)
+
+      Spacer()
+        .frame(height: 16)
+
+    }
+    .background(
+      RoundedRectangle(cornerRadius: 12)
+        .fill(.staticWhite)
+        .shadow(color: .shadowColor, radius: 2)
+    )
+    .padding(.horizontal, 16)
+
+  }
+
+
+
+  @ViewBuilder
+  private func blogList() -> some View {
+    VStack {
+      blogListitem(
+        name: "김민희",
+        blogTilte: "모바일개발과크로스플랫폼기술을공유합니다",
+        blogLink: "https://0minnie0.tistory.com/",
+        action: { item in
+          coordinator.send(.present(.webView(url: item)))
+        }
+      )
+
+      blogListitem(
+        name: "서원지",
+        blogTilte: "모바일개발과크로스플랫폼기술을공유합니다",
+        blogLink: "https://velog.io/@suhwj/posts",
+        action: { item in
+          coordinator.send(.present(.webView(url: item)))
+        }
+      )
+
+      blogListitem(
+        name: "홍석현",
+        blogTilte: "모바일개발과크로스플랫폼기술을공유합니다",
+        blogLink: "https://velog.io/@gustjrghd/posts",
+        action: { item in
+          coordinator.send(.present(.webView(url: item)))
+        }
+      )
+    }
+  }
+
+  @ViewBuilder
+  private func blogListitem(
+    name: String,
+    blogTilte: String,
+    blogLink: String,
+    action: @escaping (String)  -> Void
+  ) -> some View {
+    VStack {
+      HStack {
+        Circle()
+          .fill(.gray.opacity(0.3))
+          .frame(width: 40, height: 40)
+          .overlay {
+            
+          }
+
+        VStack(alignment: .leading) {
+          HStack {
+            Text(name)
+              .pretendardFont(family: .Regular, size: 12)
+              .foregroundStyle(.textSecondary)
+
+            Image(asset: .link)
+              .resizable()
+              .scaledToFit()
+              .frame(width: 15, height: 15)
+              .onTapGesture {
+                action(blogLink)
+              }
+
+
+
+            Spacer()
+          }
+
+          Text(blogTilte)
+            .pretendardFont(family: .Regular, size: 12)
+            .foregroundStyle(.textGray100)
+
+          Text(blogLink)
+            .pretendardFont(family: .Light, size: 14)
+            .foregroundStyle(.basicBlack)
+            .onTapGesture {
+              action(blogLink)
+            }
+        }
+
+      Spacer()
+      }
+      .padding(.horizontal, 10)
+      .padding(.vertical, 16)
+
+    }
+    .background(
+      RoundedRectangle(cornerRadius: 12)
+        .fill(.staticWhite)
+        .shadow(color: .shadowColor, radius: 2)
+    )
+    .padding(.horizontal, 16)
+  }
+
+  @ViewBuilder
+  private func blogHintBanner() -> some View {
+    VStack {
+      HStack {
+        Spacer()
+
+        Text("💡 블로그 링크를 탭하면 새 탭에서 열립니다")
+          .pretendardFont(family: .Light, size: 12)
+          .foregroundStyle(.basicBlack)
+
+        Spacer()
+      }
+      .padding(.vertical, 16)
+    }
+
+    .background(
+      RoundedRectangle(cornerRadius: 12)
+        .fill(.staticWhite)
+        .shadow(color: .shadowColor, radius: 2)
+    )
+    .padding(.horizontal, 16)
+
+  }
+
 }
 
 #Preview {

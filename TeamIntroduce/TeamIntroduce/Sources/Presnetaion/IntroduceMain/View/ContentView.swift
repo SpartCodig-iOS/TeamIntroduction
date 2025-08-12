@@ -20,10 +20,9 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.all)
 
       VStack {
+        Spacer()
+
         Text("main")
-          .onTapGesture {
-            coordinator.send(.presntDetail)
-          }
 
         Spacer()
 
@@ -77,10 +76,10 @@ extension ContentView {
             subContent: item.subtitleContent,
             blogUrl: "",
             showArrow: true,
-            moreInfoItem: moreinfoitem,
+            moreInfoItem: item,
             selection: $moreinfoitem,
             arrowAction: { item in
-              print("item : \(item)")
+              handleMoreInfoItem(for: item)
             }
           )
           .padding(.vertical, 3)
@@ -90,8 +89,16 @@ extension ContentView {
     .padding(.horizontal, 24)
   }
 
-
-
+  func handleMoreInfoItem(for moreInfo: MoreInfoItem) {
+    switch moreInfo {
+    case .teamIntroduce:
+      coordinator.send(.present(.teamIntroduce))
+    case .teamAgreement:
+      coordinator.send(.present(.teamAgreement))
+    case .teamBlog:
+      coordinator.send(.present(.teamBlog))
+    }
+  }
 }
 
 #Preview {

@@ -18,8 +18,10 @@ extension ShapeStyle where Self == Color {
   // MARK: - Static Text
 
   static var textPrimary: Color { .init(hex: "FFFFFF") }
-  static var textSecondary: Color { .init(hex: "717182") }
+  static var textSecondary: Color { .init(hex: "141414") }
   static var textSecondary100: Color { .init(hex: "171725") }
+  static var textGray: Color { .init(hex: "636363") }
+  static var textGray100: Color { .init(hex: "7D7E8C") }
   static var textInactive: Color { .init(hex: "70737C47").opacity(0.28) }
 
   // MARK: - Static Background
@@ -48,6 +50,7 @@ extension ShapeStyle where Self == Color {
   static var gray90: Color { .init(hex: "202325") }
   static var grayError: Color { .init(hex: "FF5050") }
   static var grayWhite: Color { .init(hex: "FFFFFF") }
+  static var blueGray: Color { .init(hex: "7A7A89") }
   static var grayPrimary: Color { .init(hex: "0099FF") }
 
   // MARK: - Surface

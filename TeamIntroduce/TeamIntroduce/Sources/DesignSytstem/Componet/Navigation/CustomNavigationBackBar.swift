@@ -7,12 +7,41 @@
 
 import SwiftUI
 
-struct CustomNavigationBackBar: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+ struct CustomNavigationBackBar: View {
+  private var buttonAction: () -> Void = { }
+  private var text: String
 
-#Preview {
-    CustomNavigationBackBar()
+
+  init(
+    text: String,
+    buttonAction: @escaping () -> Void,
+  ) {
+    self.buttonAction = buttonAction
+    self.text = text
+  }
+
+   var body: some View {
+    HStack {
+      Image(asset: .leftArrow)
+        .resizable()
+        .scaledToFit()
+        .frame(width: 10, height: 20)
+        .foregroundStyle(.staticWhite)
+
+      Spacer()
+        .frame(width: 20)
+
+        Text(text)
+        .pretendardFont(family: .Regular, size: 14)
+        .foregroundStyle(.textGray)
+
+      Spacer()
+
+
+    }
+    .padding(.horizontal, 30)
+    .onTapGesture {
+      buttonAction()
+    }
+  }
 }

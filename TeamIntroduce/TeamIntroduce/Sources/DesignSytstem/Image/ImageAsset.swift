@@ -12,4 +12,7 @@ enum ImageAsset: String {
   case rightArrow
   case blog
   case check
+  case leftArrow
+  case glabal
+  case link
 }
