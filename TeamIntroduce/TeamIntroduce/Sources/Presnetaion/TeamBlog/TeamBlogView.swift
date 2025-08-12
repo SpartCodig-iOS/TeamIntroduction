@@ -8,41 +8,51 @@
 import SwiftUI
 
 struct TeamBlogView: View {
-@EnvironmentObject var coordinator: IntroduceCoordinator
-
-    var body: some View {
-      ZStack {
-        Color.white
-          .edgesIgnoringSafeArea(.all)
-
-        VStack {
-          Spacer()
-            .frame(height: 14)
-
-          CustomNavigationBackBar(text: "팀블로그") {
-            coordinator.goBack()
-          }
-
-          Spacer()
-            .frame(height: 20)
-
-          blogHeaderView()
-
-          Spacer()
-            .frame(height: 10)
-
-          blogList()
+  @EnvironmentObject var coordinator: IntroduceCoordinator
+  @Bindable var viewModel: TeamBlogViewModel
 
 
-          Spacer()
+  init(viewModel: TeamBlogViewModel) {
+    self.viewModel = viewModel
+  }
 
-          blogHintBanner()
+  var body: some View {
+    ZStack {
+      Color.white
+        .edgesIgnoringSafeArea(.all)
 
-          Spacer()
-            .frame(height: 30)
+      VStack {
+        Spacer()
+          .frame(height: 14)
+
+        CustomNavigationBackBar(text: "팀블로그") {
+          coordinator.goBack()
         }
+
+        Spacer()
+          .frame(height: 20)
+
+        blogHeaderView()
+
+        Spacer()
+          .frame(height: 10)
+
+        blogList()
+
+
+        Spacer()
+
+        blogHintBanner()
+
+        Spacer()
+          .frame(height: 30)
       }
+
     }
+    .onAppear {
+      viewModel.send(.onAppear)
+    }
+  }
 }
 
 extension TeamBlogView {
@@ -54,7 +64,7 @@ extension TeamBlogView {
         .frame(height: 16)
 
 
-    Circle()
+      Circle()
         .fill(.gray40)
         .frame(width: 56, height: 56)
         .overlay {
@@ -103,33 +113,39 @@ extension TeamBlogView {
 
   @ViewBuilder
   private func blogList() -> some View {
-    VStack {
-      blogListitem(
-        name: "김민희",
-        blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
-        blogLink: "https://0minnie0.tistory.com/",
-        action: { item in
-          coordinator.send(.present(.webView(url: item)))
-        }
-      )
+    if !viewModel.isLoading {
+      VStack {
+        blogListitem(
+          name: "김민희",
+          blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
+          blogLink: "https://0minnie0.tistory.com/",
+          action: { item in
+            viewModel.send(.presentWebView(url: item))
+          }
+        )
 
-      blogListitem(
-        name: "서원지",
-        blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
-        blogLink: "https://velog.io/@suhwj/posts",
-        action: { item in
-          coordinator.send(.present(.webView(url: item)))
-        }
-      )
+        blogListitem(
+          name: "서원지",
+          blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
+          blogLink: "https://velog.io/@suhwj/posts",
+          action: { item in
+            viewModel.send(.presentWebView(url: item))
+          }
+        )
 
-      blogListitem(
-        name: "홍석현",
-        blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
-        blogLink: "https://velog.io/@gustjrghd/posts",
-        action: { item in
-          coordinator.send(.present(.webView(url: item)))
-        }
-      )
+        blogListitem(
+          name: "홍석현",
+          blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
+          blogLink: "https://velog.io/@gustjrghd/posts",
+          action: { item in
+            viewModel.send(.presentWebView(url: item))
+          }
+        )
+      }
+    } else {
+      ForEach(0..<3, id: \.self) { _ in
+        SkeletonRowView()
+      }
     }
   }
 
@@ -146,7 +162,7 @@ extension TeamBlogView {
           .fill(.gray.opacity(0.3))
           .frame(width: 40, height: 40)
           .overlay {
-            
+
           }
 
         VStack(alignment: .leading) {
@@ -178,7 +194,7 @@ extension TeamBlogView {
             }
         }
 
-      Spacer()
+        Spacer()
 
       }
       .padding(16)
@@ -219,5 +235,5 @@ extension TeamBlogView {
 }
 
 #Preview {
-    TeamBlogView()
+  TeamBlogView(viewModel: .init())
 }

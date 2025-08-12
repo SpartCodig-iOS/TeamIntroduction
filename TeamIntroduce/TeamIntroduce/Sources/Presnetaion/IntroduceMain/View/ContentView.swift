@@ -12,7 +12,6 @@ struct ContentView: View {
   @Environment(\.modelContext) private var modelContext
   @Query private var items: [Item]
   @EnvironmentObject private var coordinator: IntroduceCoordinator
-  @State private var moreinfoitem: MoreInfoItem = .teamIntroduce
 
   var body: some View {
     ZStack {
@@ -26,7 +25,6 @@ struct ContentView: View {
 
         Spacer()
 
-        moreInfoSection()
 
         Spacer()
           .frame(height: 20)
@@ -52,53 +50,8 @@ struct ContentView: View {
 
 
 extension ContentView {
-  @ViewBuilder
-  private func moreInfoSection() -> some View {
-    VStack {
-      HStack {
-        Text("더 알아보기")
-          .pretendardFont(family:.semiBold, size: 20)
-          .foregroundStyle(.basicBlack)
 
-        Spacer()
 
-      }
-
-      Spacer()
-        .frame(height: 14)
-
-      ForEach(MoreInfoItem.moreInfoList, id: \.self) { item in
-        VStack {
-          ListRowComponet(
-            color: item.color,
-            image: item.images,
-            title: item.titleContent,
-            subContent: item.subtitleContent,
-            blogUrl: "",
-            showArrow: true,
-            moreInfoItem: item,
-            selection: $moreinfoitem,
-            arrowAction: { item in
-              handleMoreInfoItem(for: item)
-            }
-          )
-          .padding(.vertical, 3)
-        }
-      }
-    }
-    .padding(.horizontal, 24)
-  }
-
-  func handleMoreInfoItem(for moreInfo: MoreInfoItem) {
-    switch moreInfo {
-    case .teamIntroduce:
-      coordinator.send(.present(.teamIntroduce))
-    case .teamAgreement:
-      coordinator.send(.present(.teamAgreement))
-    case .teamBlog:
-      coordinator.send(.present(.teamBlog))
-    }
-  }
 }
 
 #Preview {

@@ -44,7 +44,7 @@ extension IntorduceCoordinatorView {
     case .teamIntroduce:
       EmptyView()
     case .teamBlog:
-      TeamBlogView()
+      TeamBlogView(viewModel: .init(coordinator: coordinator))
         .navigationBarBackButtonHidden()
 
     case .webView(let url):
