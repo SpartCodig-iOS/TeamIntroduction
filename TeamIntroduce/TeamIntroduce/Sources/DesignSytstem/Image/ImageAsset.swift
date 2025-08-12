@@ -18,4 +18,9 @@ enum ImageAsset: String {
   case TeamAgreementLogo
   case TeamBlogLogo
   case TeamIntroductionLogo
+  case TeamiIntroduce
+  case TeamInfroduce_Accident
+  case TeamInfroduce_Heart
+  case TeamInfroduce_Circle
+  case TeamInfroduce_Person
 }
