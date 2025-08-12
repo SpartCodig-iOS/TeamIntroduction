@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-struct IntroduceItem: Identifiable {
-  let id = UUID()
-  let image: ImageAsset
-  let title: String
-  let subtitle: String
-}
 
 struct TeamIntroduceView: View {
   @EnvironmentObject var coordinator: IntroduceCoordinator

@@ -100,41 +100,30 @@ extension TeamBlogView {
   @ViewBuilder
   private func blogList() -> some View {
     if !viewModel.isLoading {
-      let blogs = [
-        (name: "김민희",
-         blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
-         blogLink: "https://0minnie0.tistory.com/"),
-        (name: "서원지",
-         blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
-         blogLink: "https://velog.io/@suhwj/posts"),
-        (name: "홍석현",
-         blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
-         blogLink: "https://velog.io/@gustjrghd/posts")
-      ]
+
 
       VStack(spacing: 12) {
-        ForEach(blogs.indices, id: \.self) { index in
-          let blog = blogs[index]
-
-          blogListitem(
-            name: blog.name,
-            blogTitle: blog.blogTitle,
-            blogLink: blog.blogLink
-          ) { link in
-            viewModel.send(.presentWebView(url: link))
-          }
-          // 👉 순차 애니메이션
-          .opacity(index <= viewModel.currentMaxIndex ? 1 : 0)
-          .offset(y: index <= viewModel.currentMaxIndex ? 0 : 20)
-          .onAppear {
-            guard index > viewModel.currentMaxIndex else { return }
-            let delay = 0.5 + 0.2 * Double(index) // 각 카드 간 간격 늘림
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-              withAnimation(.spring(response: 0.8, dampingFraction: 0.85)) {
-                viewModel.currentMaxIndex = index
-              }
+        ForEach(Array(viewModel.blogs.indices), id: \.self) { index in
+            let blog = viewModel.blogs[index]
+          
+            blogListitem(
+                name: blog.name,
+                blogTitle: blog.blogTitle,
+                blogLink: blog.blogLink
+            ) { link in
+                viewModel.send(.presentWebView(url: link))
             }
-          }
+            .opacity(index <= viewModel.currentMaxIndex ? 1 : 0)
+            .offset(y: index <= viewModel.currentMaxIndex ? 0 : 20)
+            .onAppear {
+                guard index > viewModel.currentMaxIndex else { return }
+                let delay = 0.25 + 0.12 * Double(index) // ⏱ 첫 대기, 카드 간 텀 조정
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                    withAnimation(.spring(response: 0.8, dampingFraction: 0.85)) {
+                        viewModel.currentMaxIndex = index
+                    }
+                }
+            }
         }
       }
     } else {
