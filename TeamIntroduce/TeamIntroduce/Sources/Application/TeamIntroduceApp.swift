@@ -13,6 +13,88 @@ struct TeamIntroduceApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .modelContainer(for: TeamMember.self) { result in
+                    // 🎯 초기 데이터 설정
+                    switch result {
+                    case .success(let container):
+                        setupInitialData(container: container)
+                    case .failure(let error):
+                        print("❌ SwiftData 컨테이너 생성 실패: \(error)")
+                    }
+                }
         }
+    }
+    
+    // MARK: - 초기 데이터 설정
+    private func setupInitialData(container: ModelContainer) {
+        let context = container.mainContext
+        
+        // 🔍 기존 데이터 확인
+        let descriptor = FetchDescriptor<TeamMember>()
+        let existingCount = (try? context.fetch(descriptor).count) ?? 0
+        
+        print("📊 기존 팀원 데이터 개수: \(existingCount)")
+        
+        // 데이터가 없으면 샘플 데이터 추가
+        if existingCount == 0 {
+            print("🎯 초기 팀원 데이터 생성 중...")
+            
+            let members = createMembers()
+            
+            for member in members {
+                context.insert(member)
+                print("✅ 팀원 추가: \(member.name) (ID: \(member.id))")
+            }
+            
+            do {
+                try context.save()
+                print("💾 초기 데이터 저장 완료!")
+                
+                // 저장 후 다시 확인
+                let savedCount = (try? context.fetch(descriptor).count) ?? 0
+                print("📊 저장된 팀원 데이터 개수: \(savedCount)")
+            } catch {
+                print("❌ 데이터 저장 실패: \(error)")
+            }
+        } else {
+            print("ℹ️ 기존 데이터가 있어서 초기화를 건너뜁니다.")
+        }
+    }
+    
+    // MARK: - 샘플 데이터 생성
+    private func createMembers() -> [TeamMember] {
+        return [
+            TeamMember(
+                name: "김민희",
+                imageName: "person.crop.circle",
+                role: "iOS Developer",
+                mbti: "ESTP",
+                introduction: "캠프 후 되고 싶은 나의 모습 혹은 미래의 나의 모습을 한마디로 적어보세요! 생생하게 꿈꾸면 이루어진답니다!",
+                strengths: ["UIKit", "Core Data", "Auto Layout", "Unit Testing"],
+                blogLink: "https://0minnie0.tistory.com/",
+                collaborationStyle: ["세심한 검토", "문서화 중시", "체계적 정리", "품질 관리"],
+                isLeader: true
+            ),
+            TeamMember(
+                name: "서원지",
+                imageName: "person.crop.circle.fill",
+                role: "iOS Developer",
+                mbti: "INTP",
+                introduction: "좀 큰 기업에  입사를 하고 다양한 프로젝트르 하고 싶습니다",
+                strengths: ["Swift", "RxSwift", "Clean Architecture", "Firebase Integration"],
+                blogLink: "https://velog.io/@suhwj/posts",
+                collaborationStyle: ["창의적 문제해결", "사용자 중심 사고", "논리적 분석", "기술 연구"]
+            ),
+            TeamMember(
+                name: "홍석현",
+                imageName: "person.circle.fill",
+                role: "iOS Developer",
+                mbti: "ENFJ",
+                introduction: "안녕하세요! 열정적인 iOS 개발자입니다.",
+                strengths: ["SwiftUI", "Combine", "Swift Concurrency", "MVVM Architecture"],
+                blogLink: "https://blog.example.com/hong",
+                collaborationStyle: ["적극적 소통", "코드 리뷰", "팀 리딩", "지식 공유"]
+            )
+        ]
     }
 }

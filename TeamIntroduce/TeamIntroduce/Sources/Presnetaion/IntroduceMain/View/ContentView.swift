@@ -10,16 +10,12 @@ import SwiftData
 
 struct ContentView: View {
   @Environment(\.modelContext) private var modelContext
-  @Query private var items: [TeamMember]
+  @Query private var teamMembers: [TeamMember]
   @EnvironmentObject private var coordinator: IntroduceCoordinator
 
-
   var body: some View {
-    VStack {
-      Text("main")
-        .onTapGesture {
-          coordinator.send(.present(.teamAgreement))
-        }
+    List(teamMembers, id: \.id) { member in
+      Text(member.name)
     }
   }
 }

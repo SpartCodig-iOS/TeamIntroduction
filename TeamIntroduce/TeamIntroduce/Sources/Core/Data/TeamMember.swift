@@ -19,6 +19,7 @@ final class TeamMember: Identifiable {
     var strengths: [String]
     var blogLink: String
     var collaborationStyle: [String]
+    var isLeader: Bool
 
     init(
         id: UUID = UUID(),
@@ -29,7 +30,8 @@ final class TeamMember: Identifiable {
         introduction: String,
         strengths: [String],
         blogLink: String,
-        collaborationStyle: [String]
+        collaborationStyle: [String],
+        isLeader: Bool = false
     ) {
         self.id = id
         self.name = name
@@ -40,5 +42,6 @@ final class TeamMember: Identifiable {
         self.strengths = strengths
         self.blogLink = blogLink
         self.collaborationStyle = collaborationStyle
+        self.isLeader = isLeader
     }
 }
