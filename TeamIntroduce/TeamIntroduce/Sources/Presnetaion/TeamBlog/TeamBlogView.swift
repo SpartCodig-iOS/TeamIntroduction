@@ -15,7 +15,6 @@ struct TeamBlogView: View {
         Color.white
           .edgesIgnoringSafeArea(.all)
 
-
         VStack {
           Spacer()
             .frame(height: 14)
@@ -74,7 +73,7 @@ extension TeamBlogView {
         Spacer()
 
         Text("팀원들의 블로그")
-          .pretendardFont(family: .Regular, size: 13)
+          .pretendardFont(family: .regular, size: 13)
           .foregroundStyle(.staticBlack)
 
         Spacer()
@@ -84,7 +83,7 @@ extension TeamBlogView {
         .frame(height: 10)
 
       Text("각자 공부한 내용및  경험을 공유 하는 공간입니다.")
-        .pretendardFont(family: .Regular, size: 13)
+        .pretendardFont(family: .regular, size: 13)
         .foregroundStyle(.blueGray)
 
       Spacer()
@@ -107,7 +106,7 @@ extension TeamBlogView {
     VStack {
       blogListitem(
         name: "김민희",
-        blogTilte: "모바일개발과크로스플랫폼기술을공유합니다",
+        blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
         blogLink: "https://0minnie0.tistory.com/",
         action: { item in
           coordinator.send(.present(.webView(url: item)))
@@ -116,7 +115,7 @@ extension TeamBlogView {
 
       blogListitem(
         name: "서원지",
-        blogTilte: "모바일개발과크로스플랫폼기술을공유합니다",
+        blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
         blogLink: "https://velog.io/@suhwj/posts",
         action: { item in
           coordinator.send(.present(.webView(url: item)))
@@ -125,7 +124,7 @@ extension TeamBlogView {
 
       blogListitem(
         name: "홍석현",
-        blogTilte: "모바일개발과크로스플랫폼기술을공유합니다",
+        blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
         blogLink: "https://velog.io/@gustjrghd/posts",
         action: { item in
           coordinator.send(.present(.webView(url: item)))
@@ -137,7 +136,7 @@ extension TeamBlogView {
   @ViewBuilder
   private func blogListitem(
     name: String,
-    blogTilte: String,
+    blogTitle: String,
     blogLink: String,
     action: @escaping (String)  -> Void
   ) -> some View {
@@ -153,7 +152,7 @@ extension TeamBlogView {
         VStack(alignment: .leading) {
           HStack {
             Text(name)
-              .pretendardFont(family: .Regular, size: 12)
+              .pretendardFont(family: .regular, size: 12)
               .foregroundStyle(.textSecondary)
 
             Image(asset: .link)
@@ -164,17 +163,15 @@ extension TeamBlogView {
                 action(blogLink)
               }
 
-
-
             Spacer()
           }
 
-          Text(blogTilte)
-            .pretendardFont(family: .Regular, size: 12)
+          Text(blogTitle)
+            .pretendardFont(family: .regular, size: 12)
             .foregroundStyle(.textGray100)
 
           Text(blogLink)
-            .pretendardFont(family: .Light, size: 14)
+            .pretendardFont(family: .light, size: 14)
             .foregroundStyle(.basicBlack)
             .onTapGesture {
               action(blogLink)
@@ -182,9 +179,9 @@ extension TeamBlogView {
         }
 
       Spacer()
+
       }
-      .padding(.horizontal, 10)
-      .padding(.vertical, 16)
+      .padding(16)
 
     }
     .background(
@@ -202,7 +199,7 @@ extension TeamBlogView {
         Spacer()
 
         Text("💡 블로그 링크를 탭하면 새 탭에서 열립니다")
-          .pretendardFont(family: .Light, size: 12)
+          .pretendardFont(family: .light, size: 12)
           .foregroundStyle(.basicBlack)
 
         Spacer()

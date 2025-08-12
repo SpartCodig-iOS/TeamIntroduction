@@ -57,7 +57,7 @@ extension ContentView {
     VStack {
       HStack {
         Text("더 알아보기")
-          .pretendardFont(family:.SemiBold, size: 20)
+          .pretendardFont(family:.semiBold, size: 20)
           .foregroundStyle(.basicBlack)
 
         Spacer()

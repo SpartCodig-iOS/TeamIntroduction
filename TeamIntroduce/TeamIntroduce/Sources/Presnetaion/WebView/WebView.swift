@@ -25,7 +25,7 @@ import SwiftUI
         Spacer()
           .frame(height: 14)
 
-        NavigationBackButton{
+        CustomNavigationBackBar(text: ""){
           coordinator.goBack()
         }
 

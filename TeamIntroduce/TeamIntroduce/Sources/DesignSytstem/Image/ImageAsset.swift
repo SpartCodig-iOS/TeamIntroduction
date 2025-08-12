@@ -15,4 +15,7 @@ enum ImageAsset: String {
   case leftArrow
   case glabal
   case link
+  case TeamAgreementLogo
+  case TeamBlogLogo
+  case TeamIntroductionLogo
 }

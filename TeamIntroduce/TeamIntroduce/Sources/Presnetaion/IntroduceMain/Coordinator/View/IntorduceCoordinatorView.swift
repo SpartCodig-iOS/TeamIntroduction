@@ -25,7 +25,7 @@ struct IntorduceCoordinatorView : View {
 
   var body: some View {
     NavigationStack(path: $coordinator.path) {
-      ContentView()
+      IntroductionMainView(viewModel: IntroductionViewModel(coordinator: coordinator))
         .navigationDestination(for: IntroduceRoute.self, destination: makeDestination)
     }
     .modelContainer(sharedModelContainer)
@@ -38,7 +38,7 @@ extension IntorduceCoordinatorView {
   private func makeDestination(for route: IntroduceRoute) -> some View {
     switch route {
     case .introduceMain:
-      ContentView()
+      IntroductionMainView(viewModel: IntroductionViewModel(coordinator: coordinator))
     case .teamAgreement:
       ContentView()
     case .teamIntroduce:

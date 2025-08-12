@@ -42,7 +42,6 @@ import WebKit
     webView.backgroundColor = .white
     webView.translatesAutoresizingMaskIntoConstraints = false
 
-    // ✅ 로딩 인디케이터(스피너)
     let spinner = UIActivityIndicatorView(style: .large)
     spinner.translatesAutoresizingMaskIntoConstraints = false
     spinner.hidesWhenStopped = true
@@ -111,9 +110,9 @@ import WebKit
 
      func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
       // 로딩 시작 → 스피너 표시
-      DispatchQueue.main.async {
-        self.spinner?.alpha = 1
-        self.spinner?.startAnimating()
+      DispatchQueue.main.async { [weak self ] in
+        self?.spinner?.alpha = 1
+        self?.spinner?.startAnimating()
       }
     }
 
@@ -131,8 +130,8 @@ import WebKit
     }
 
     private func hideSpinner() {
-      DispatchQueue.main.async {
-        guard let spinner = self.spinner else { return }
+      DispatchQueue.main.async { [weak self ] in 
+        guard let spinner = self?.spinner else { return }
         UIView.animate(withDuration: 0.2, animations: {
           spinner.alpha = 0
         }, completion: { _ in

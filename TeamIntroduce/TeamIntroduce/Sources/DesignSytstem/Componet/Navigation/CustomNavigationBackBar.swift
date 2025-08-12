@@ -13,7 +13,7 @@ import SwiftUI
 
 
   init(
-    text: String,
+    text: String = "",
     buttonAction: @escaping () -> Void,
   ) {
     self.buttonAction = buttonAction
@@ -31,9 +31,11 @@ import SwiftUI
       Spacer()
         .frame(width: 20)
 
+      if !text.isEmpty {
         Text(text)
-        .pretendardFont(family: .Regular, size: 14)
-        .foregroundStyle(.textGray)
+          .pretendardFont(family: .regular, size: 14)
+          .foregroundStyle(.textPrimary)
+      }
 
       Spacer()
 
