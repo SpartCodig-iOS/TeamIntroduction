@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
+import Foundation
 import SwiftUI
 
 // MARK: - Navigation 제어 프로토콜

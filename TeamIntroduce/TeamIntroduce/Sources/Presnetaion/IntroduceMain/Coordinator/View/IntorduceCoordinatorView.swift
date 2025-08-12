@@ -43,7 +43,7 @@ extension IntorduceCoordinatorView {
       ContentView()
     case .teamIntroduce:
       EmptyView()
-    case .temBlog:
+    case .teamBlog:
       EmptyView()
     }
   }
