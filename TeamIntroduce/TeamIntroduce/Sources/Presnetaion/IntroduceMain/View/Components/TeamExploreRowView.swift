@@ -13,14 +13,10 @@ enum TeamExploreItem: CaseIterable, Identifiable {
     case blog
     
     var id: Self { self }
-}
-
-struct TeamExploreRowView: View {
     
-    private let item: TeamExploreItem
     
-    private var title: String {
-        switch item {
+    var title: String {
+        switch self {
         case .introduction:
             return "팀 소개"
         case .agreement:
@@ -30,8 +26,8 @@ struct TeamExploreRowView: View {
         }
     }
     
-    private var subtitle: String {
-        switch item {
+    var subtitle: String {
+        switch self {
         case .introduction:
             return "우리 팀의 특징과 목표"
         case .agreement:
@@ -40,6 +36,11 @@ struct TeamExploreRowView: View {
             return "팀원들의 블로그 모음"
         }
     }
+}
+
+struct TeamExploreRowView: View {
+    
+    private let item: TeamExploreItem
     
     init(item: TeamExploreItem) {
         self.item = item
@@ -50,11 +51,11 @@ struct TeamExploreRowView: View {
             Circle()
                 .frame(width: 42, height: 42)
             VStack(alignment: .leading, spacing: 4) {
-                Text(title)
+                Text(item.title)
                     .pretendardFont(family: .semiBold, size: 14)
                     .foregroundStyle(.textPrimary)
                 
-                Text(subtitle)
+                Text(item.subtitle)
                     .pretendardFont(family: .regular, size: 12)
                     .foregroundStyle(.textSecondary)
             }
