@@ -127,7 +127,7 @@ struct CollabStyleView: View {
     }
 }
 
-struct blogView: View {
+struct BlogView: View {
     let profile: MemberProfile
 
     var body: some View {
@@ -142,6 +142,7 @@ struct blogView: View {
         }
     }
 }
+
 
 struct CardStyle: ViewModifier {
     func body(content: Content) -> some View {
