@@ -12,7 +12,7 @@ struct ContentView: View {
   @Environment(\.modelContext) private var modelContext
   @Query private var items: [Item]
   @EnvironmentObject private var coordinator: IntroduceCoordinator
-
+  @State private var moreinfoitem: MoreInfoItem = .teamIntroduce
 
   var body: some View {
     ZStack {
@@ -68,7 +68,6 @@ extension ContentView {
       Spacer()
         .frame(height: 14)
 
-
       ForEach(MoreInfoItem.moreInfoList, id: \.self) { item in
         VStack {
           ListRowComponet(
@@ -78,17 +77,21 @@ extension ContentView {
             subContent: item.subtitleContent,
             blogUrl: "",
             showArrow: true,
-            arrowAction: {
-
+            moreInfoItem: moreinfoitem,
+            selection: $moreinfoitem,
+            arrowAction: { item in
+              print("item : \(item)")
             }
           )
           .padding(.vertical, 3)
         }
       }
-
     }
     .padding(.horizontal, 24)
   }
+
+
+
 }
 
 #Preview {
