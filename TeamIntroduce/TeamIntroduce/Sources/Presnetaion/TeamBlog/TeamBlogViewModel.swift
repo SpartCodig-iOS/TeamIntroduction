@@ -56,7 +56,7 @@ final class TeamBlogViewModel {
   private func fetchIntroductions() async {
     isLoading = true
     Task {
-      try await Task.sleep(for: .seconds(1))
+      try await Task.sleep(for: .seconds(0.4))
 
       isLoading = false
     }
