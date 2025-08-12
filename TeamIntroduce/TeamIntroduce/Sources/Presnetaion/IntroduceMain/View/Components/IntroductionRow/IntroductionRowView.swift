@@ -21,7 +21,7 @@ struct IntroductionRowView: View {
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 4) {
                     Text(model.name)
-                        .pretendardFont(family: .SemiBold, size: 14)
+                        .pretendardFont(family: .semiBold, size: 14)
                         .foregroundStyle(.textPrimary)
                     
                     if model.isLeader {
@@ -32,7 +32,7 @@ struct IntroductionRowView: View {
                 }
                 
                 Text(model.role)
-                    .pretendardFont(family: .Regular, size: 12)
+                    .pretendardFont(family: .regular, size: 12)
                     .foregroundStyle(.textSecondary)
                 
                 MBTILabel(mbti: model.mbti)

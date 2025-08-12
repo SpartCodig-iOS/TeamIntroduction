@@ -51,11 +51,11 @@ struct TeamExploreRowView: View {
                 .frame(width: 42, height: 42)
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
-                    .pretendardFont(family: .SemiBold, size: 14)
+                    .pretendardFont(family: .semiBold, size: 14)
                     .foregroundStyle(.textPrimary)
                 
                 Text(subtitle)
-                    .pretendardFont(family: .Regular, size: 12)
+                    .pretendardFont(family: .regular, size: 12)
                     .foregroundStyle(.textSecondary)
             }
             

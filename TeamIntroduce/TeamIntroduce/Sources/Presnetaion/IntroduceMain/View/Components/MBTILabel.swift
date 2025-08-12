@@ -52,7 +52,7 @@ struct MBTILabel: View {
     
     var body: some View {
         Text(mbti.rawValue)
-            .pretendardFont(family: .Regular, size: 10)
+            .pretendardFont(family: .regular, size: 10)
             .foregroundStyle(textColor)
             .padding(.horizontal, 7)
             .padding(.vertical, 5)

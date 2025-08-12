@@ -21,7 +21,7 @@ struct IntroductionMainView: View {
                 
                 VStack {
                     Text("팀원 소개")
-                        .pretendardFont(family: .Bold, size: 14)
+                        .pretendardFont(family: .bold, size: 14)
                         .foregroundStyle(.textPrimary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 8)
@@ -38,7 +38,7 @@ struct IntroductionMainView: View {
                 
                 VStack {
                     Text("더 알아보기")
-                        .pretendardFont(family: .Bold, size: 14)
+                        .pretendardFont(family: .bold, size: 14)
                         .foregroundStyle(.textPrimary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 8)

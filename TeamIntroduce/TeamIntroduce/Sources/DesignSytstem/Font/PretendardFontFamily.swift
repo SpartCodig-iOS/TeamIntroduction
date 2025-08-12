@@ -8,35 +8,35 @@
 import Foundation
 
 enum PretendardFontFamily: CustomStringConvertible {
-  case Black
-  case Bold
-  case ExtraBold
-  case ExtraLight
-  case Light
-  case Medium
-  case Regular
-  case SemiBold
-  case Thin
+  case black
+  case bold
+  case extraBold
+  case extraLight
+  case light
+  case medium
+  case regular
+  case semiBold
+  case thin
 
   public var description: String {
     switch self {
-    case .Black:
+    case .black:
       return "Black"
-    case .Bold:
+    case .bold:
       return "Bold"
-    case .ExtraBold:
+    case .extraBold:
       return "ExtraBold"
-    case .ExtraLight:
+    case .extraLight:
       return "ExtraLight"
-    case .Light:
+    case .light:
       return "Light"
-    case .Medium:
+    case .medium:
       return "Medium"
-    case .Regular:
+    case .regular:
       return "Regular"
-    case .SemiBold:
+    case .semiBold:
       return "SemiBold"
-    case .Thin:
+    case .thin:
       return "Thin"
     }
   }

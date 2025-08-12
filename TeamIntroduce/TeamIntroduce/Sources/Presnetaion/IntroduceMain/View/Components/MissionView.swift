@@ -14,11 +14,11 @@ struct MissionView: View {
                 .renderingMode(.original)
             
             Text("우리의 미션")
-                .pretendardFont(family: .Bold, size: 14)
+                .pretendardFont(family: .bold, size: 14)
                 .foregroundStyle(.textPrimary)
             
             Text("혁신적인 기술로 사용자의 삶을 더 편리하고 풍요롭게 만드는 것")
-                .pretendardFont(family: .Regular, size: 12)
+                .pretendardFont(family: .regular, size: 12)
                 .foregroundStyle(.textSecondary)
         }
         .frame(maxWidth: .infinity)
