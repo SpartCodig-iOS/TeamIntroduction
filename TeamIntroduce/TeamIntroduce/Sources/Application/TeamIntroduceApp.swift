@@ -72,7 +72,7 @@ struct TeamIntroduceApp: App {
                 introduction: "캠프 후 되고 싶은 나의 모습 혹은 미래의 나의 모습을 한마디로 적어보세요! 생생하게 꿈꾸면 이루어진답니다!",
                 strengths: ["UIKit", "Core Data", "Auto Layout", "Unit Testing"],
                 blogLink: "https://0minnie0.tistory.com/",
-                collaborationStyle: ["세심한 검토", "문서화 중시", "체계적 정리", "품질 관리"],
+                collaborationStyle: "세심한 검토, 문서화 중시, 체계적 정리, 품질 관리",
                 isLeader: true
             ),
             TeamMember(
@@ -83,7 +83,7 @@ struct TeamIntroduceApp: App {
                 introduction: "좀 큰 기업에  입사를 하고 다양한 프로젝트르 하고 싶습니다",
                 strengths: ["Swift", "RxSwift", "Clean Architecture", "Firebase Integration"],
                 blogLink: "https://velog.io/@suhwj/posts",
-                collaborationStyle: ["창의적 문제해결", "사용자 중심 사고", "논리적 분석", "기술 연구"]
+                collaborationStyle: "창의적 문제해결, 사용자 중심 사고, 논리적 분석, 기술 연구"
             ),
             TeamMember(
                 name: "홍석현",
@@ -93,7 +93,7 @@ struct TeamIntroduceApp: App {
                 introduction: "안녕하세요! 열정적인 iOS 개발자입니다.",
                 strengths: ["SwiftUI", "Combine", "Swift Concurrency", "MVVM Architecture"],
                 blogLink: "https://blog.example.com/hong",
-                collaborationStyle: ["적극적 소통", "코드 리뷰", "팀 리딩", "지식 공유"]
+                collaborationStyle: "적극적 소통, 코드 리뷰, 팀 리딩, 지식 공유"
             )
         ]
     }
