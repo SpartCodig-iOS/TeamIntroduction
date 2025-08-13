@@ -47,7 +47,10 @@ struct MemberDetailView: View {
                         $viewModel.editingProfile.strengths :
               .constant(viewModel.profile.strengths))
 
-          CollabStyleView(profile: viewModel.profile)
+          CollabStyleView(isEditing: viewModel.isEditing,
+                          collabStyle: viewModel.isEditing ?
+                          $viewModel.editingProfile.collabStyle :
+              .constant(viewModel.profile.collabStyle))
 
           BlogView(profile: viewModel.profile)
         }
