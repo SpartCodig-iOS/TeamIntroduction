@@ -8,9 +8,7 @@
 import SwiftUI
 
  struct WebView: View {
-
   @ObservedObject var coordinator: IntroduceCoordinator
-  var url: String
 
    init(
     coordinator: IntroduceCoordinator,
