@@ -13,7 +13,7 @@ struct IntorduceCoordinatorView : View {
   
   var sharedModelContainer: ModelContainer = {
     let schema = Schema([
-      Item.self,
+      TeamMember.self,
     ])
     let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
