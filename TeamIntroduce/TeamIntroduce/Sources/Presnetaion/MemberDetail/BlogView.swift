@@ -7,17 +7,17 @@
 import SwiftUI
 
 struct BlogView: View {
-    let profile: MemberProfile
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            Text("블로그")
-                .pretendardFont(family: .SemiBold, size: 14)
-
-            Text(profile.blogURL)
-                .pretendardFont(family: .Regular, size: 13)
-                .cardStyle()
-
-        }
+  let profile: MemberProfile
+  
+  var body: some View {
+    VStack(alignment: .leading, spacing: 14) {
+      Text("블로그")
+        .pretendardFont(family: .semiBold, size: 14)
+      
+      Text(profile.blogURL)
+        .pretendardFont(family: .regular, size: 13)
+        .cardStyle()
+      
     }
+  }
 }

@@ -7,33 +7,33 @@
 import SwiftUI
 
 struct MemberProfileView: View {
-    let profile: MemberProfile
+  let profile: MemberProfile
 
-    var body: some View {
-        HStack {
-            Spacer()
+  var body: some View {
+    HStack {
+      Spacer()
 
-            VStack(spacing: 7) {
-                Image(systemName: profile.image)
-                    .font(.system(size: 40))
+      VStack(spacing: 7) {
+        Image(systemName: profile.image)
+          .font(.system(size: 40))
 
-                Text(profile.name)
-                    .pretendardFont(family: .Regular, size: 13)
+        Text(profile.name)
+          .pretendardFont(family: .regular, size: 13)
 
-                Text(profile.role)
-                    .pretendardFont(family: .Regular, size: 13)
-                    .foregroundStyle(.textSecondary100)
+        Text(profile.role)
+          .pretendardFont(family: .regular, size: 13)
+          .foregroundStyle(.textSecondary100)
 
 
-                Text(profile.mbti)
-                    .pretendardFont(family: .Regular, size: 13)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(Capsule().fill(.gray20))
-            }
+        Text(profile.mbti)
+          .pretendardFont(family: .regular, size: 13)
+          .padding(.horizontal, 12)
+          .padding(.vertical, 6)
+          .background(Capsule().fill(.gray20))
+      }
 
-            Spacer()
-        }
-        .cardStyle()
+      Spacer()
     }
+    .cardStyle()
+  }
 }
