@@ -31,6 +31,8 @@ struct MemberDetailView: View {
         coordinator.goBack()
       }
 
+      Spacer().frame(height: 20)
+
       VStack(spacing: 20) {
         MemberProfileView(profile: profile)
 
