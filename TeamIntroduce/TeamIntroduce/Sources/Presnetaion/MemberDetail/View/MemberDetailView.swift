@@ -19,8 +19,8 @@ struct MemberProfile {
 }
 
 struct MemberDetailView: View {
-  private let profile = MemberProfile()
   @ObservedObject var coordinator: IntroduceCoordinator
+  @StateObject var viewModel = MemberDetailViewModel()
 
   var body: some View {
     ZStack {
@@ -35,15 +35,15 @@ struct MemberDetailView: View {
         Spacer().frame(height: 20)
 
         VStack(spacing: 20) {
-          MemberProfileView(profile: profile)
+          MemberProfileView(profile: viewModel.profile)
 
-          IntroductionView(profile: profile)
+          IntroductionView(profile: viewModel.profile)
 
-          StrengthsView(profile: profile)
+          StrengthsView(profile: viewModel.profile)
 
-          CollabStyleView(profile: profile)
+          CollabStyleView(profile: viewModel.profile)
 
-          BlogView(profile: profile)
+          BlogView(profile: viewModel.profile)
         }
         .padding(.horizontal, 16)
         .padding(.bottom, 80)

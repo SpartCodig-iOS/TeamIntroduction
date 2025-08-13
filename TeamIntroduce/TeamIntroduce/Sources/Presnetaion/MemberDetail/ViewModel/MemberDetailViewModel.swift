@@ -8,5 +8,23 @@
 import SwiftUI
 
 class MemberDetailViewModel: ObservableObject {
-  
+  @Published var isEditing: Bool = false
+  @Published var profile: MemberProfile
+
+  init() {
+    self.profile = MemberProfile()
+  }
+
+  func startEditing() {
+    isEditing = true
+  }
+
+  func cancelEditing() {
+    isEditing = false
+  }
+
+  func saveEditing() {
+    isEditing = false
+  }
+
 }
