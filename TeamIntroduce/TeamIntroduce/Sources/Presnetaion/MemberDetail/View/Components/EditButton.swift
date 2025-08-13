@@ -16,10 +16,10 @@ struct EditButton: View {
     } label: {
       Text(text)
         .foregroundColor(.white)
+        .frame(maxWidth: .infinity)
+        .frame(height: 48)
+        .background(.backGroundPrimary)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
-    .frame(maxWidth: .infinity)
-    .frame(height: 48)
-    .background(.backGroundPrimary)
-    .clipShape(RoundedRectangle(cornerRadius: 16))
   }
 }
