@@ -37,7 +37,10 @@ struct MemberDetailView: View {
         VStack(spacing: 20) {
           MemberProfileView(profile: viewModel.profile)
 
-          IntroductionView(profile: viewModel.profile)
+          IntroductionView(isEditing: viewModel.isEditing,
+                           introduction: viewModel.isEditing ?
+                           $viewModel.editingProfile.introduction :
+                           .constant(viewModel.profile.introduction))
 
           StrengthsView(profile: viewModel.profile)
 

@@ -10,9 +10,11 @@ import SwiftUI
 class MemberDetailViewModel: ObservableObject {
   @Published var isEditing: Bool = false
   @Published var profile: MemberProfile
+  @Published var editingProfile: MemberProfile
 
   init() {
     self.profile = MemberProfile()
+    self.editingProfile = MemberProfile()
   }
 
   func startEditing() {
@@ -24,6 +26,7 @@ class MemberDetailViewModel: ObservableObject {
   }
 
   func saveEditing() {
+    profile = editingProfile
     isEditing = false
   }
 
