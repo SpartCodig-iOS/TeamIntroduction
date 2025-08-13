@@ -40,8 +40,13 @@ extension IntorduceCoordinatorView {
     switch route {
     case .introduceMain:
       IntroductionMainView(viewModel: IntroductionViewModel(coordinator: coordinator))
+
+    case .memberDetail:
+      MemberDetailView(coordinator: coordinator)
+        .navigationBarBackButtonHidden()
     case .teamAgreement:
       ContentView()
+        .navigationBarBackButtonHidden()
     case .teamIntroduce:
       TeamIntroduceView(coordinator: coordinator)
         .navigationBarBackButtonHidden()

@@ -25,6 +25,7 @@ final class IntroductionViewModel {
     case onAppear
     case refresh
     case tapMoreInfo(TeamExploreItem)
+    case presentMemberDetail
   }
 
   // MARK: - Init
@@ -57,6 +58,9 @@ final class IntroductionViewModel {
       case .blog:
         route(.present(.teamBlog))
       }
+
+    case .presentMemberDetail:
+      route(.present(.memberDetail))
     }
   }
 

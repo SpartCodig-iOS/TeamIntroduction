@@ -33,6 +33,9 @@ struct IntroductionMainView: View {
           } else {
             ForEach(viewModel.introductions) { model in
               IntroductionRowView(model: model)
+                .onTapGesture {
+                  viewModel.send(.presentMemberDetail)
+                }
             }
           }
         }
