@@ -13,13 +13,22 @@ struct ContentView: View {
   @Query private var items: [Item]
   @EnvironmentObject private var coordinator: IntroduceCoordinator
 
-
   var body: some View {
-    VStack {
-      Text("main")
-        .onTapGesture {
-          coordinator.send(.present(.teamAgreement))
-        }
+    ZStack {
+      Color.white
+        .edgesIgnoringSafeArea(.all)
+
+      VStack {
+        Spacer()
+
+        Text("main")
+
+        Spacer()
+
+
+        Spacer()
+          .frame(height: 20)
+      }
     }
   }
 
@@ -37,6 +46,12 @@ struct ContentView: View {
       }
     }
   }
+}
+
+
+extension ContentView {
+
+
 }
 
 #Preview {

@@ -13,12 +13,14 @@ extension ShapeStyle where Self == Color {
 
   static var staticWhite: Color { .init(hex: "FFFFFF") }
   static var staticBlack: Color { .init(hex: "0C0E0F") }
+  static var shadowColor: Color { .init(hex: "000000")}
 
   // MARK: - Static Text
 
   static var textPrimary: Color { .init(hex: "0A0A0A") }
   static var textSecondary: Color { .init(hex: "717182") }
   static var textSecondary100: Color { .init(hex: "525252") }
+  static var textGray100: Color { .init(hex: "7D7E8C") }
   static var textInactive: Color { .init(hex: "70737C47").opacity(0.28) }
 
   // MARK: - Static Background
@@ -48,6 +50,7 @@ extension ShapeStyle where Self == Color {
   static var gray90: Color { .init(hex: "202325") }
   static var grayError: Color { .init(hex: "FF5050") }
   static var grayWhite: Color { .init(hex: "FFFFFF") }
+  static var blueGray: Color { .init(hex: "7A7A89") }
   static var grayPrimary: Color { .init(hex: "0099FF") }
 
   // MARK: - Surface
@@ -72,7 +75,7 @@ extension ShapeStyle where Self == Color {
 
   // MARK: - NatureBlue
 
-  static var blue10: Color { .init(hex: "F5F8FF") }
+  static var blue10: Color { .init(hex: "155DFC") }
   static var blue20: Color { .init(hex: "E1EAFF") }
   static var blue30: Color { .init(hex: "C1D3FF") }
   static var blue40: Color { .init(hex: "0D82F9") }
@@ -103,6 +106,10 @@ extension ShapeStyle where Self == Color {
   static var gray600: Color { .init(hex: "808080") }
   static var gray800: Color { .init(hex: "4D4D4D") }
 
+
+
+  static var green: Color { .init(hex: "00A63E") }
+  static var lightPurple: Color { .init(hex: "9810FA") }
   static var error: Color { .init(hex: "FF5050") }
   static var basicBlue: Color { .init(hex: "0099FF") }
 
