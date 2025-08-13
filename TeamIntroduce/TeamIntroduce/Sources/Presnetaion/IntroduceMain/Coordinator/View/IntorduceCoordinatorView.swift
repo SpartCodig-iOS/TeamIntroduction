@@ -9,7 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct IntorduceCoordinatorView : View {
-  @EnvironmentObject private var coordinator: IntroduceCoordinator
+  @StateObject private var coordinator =  IntroduceCoordinator()
+  
   var sharedModelContainer: ModelContainer = {
     let schema = Schema([
       TeamMember.self,
@@ -25,7 +26,7 @@ struct IntorduceCoordinatorView : View {
 
   var body: some View {
     NavigationStack(path: $coordinator.path) {
-      ContentView()
+      IntroductionMainView(viewModel: IntroductionViewModel(coordinator: coordinator))
         .navigationDestination(for: IntroduceRoute.self, destination: makeDestination)
     }
     .modelContainer(sharedModelContainer)
@@ -38,13 +39,23 @@ extension IntorduceCoordinatorView {
   private func makeDestination(for route: IntroduceRoute) -> some View {
     switch route {
     case .introduceMain:
-      ContentView()
+      IntroductionMainView(viewModel: IntroductionViewModel(coordinator: coordinator))
+
+    case .memberDetail:
+      MemberDetailView(coordinator: coordinator)
+        .navigationBarBackButtonHidden()
     case .teamAgreement:
       ContentView()
+        .navigationBarBackButtonHidden()
     case .teamIntroduce:
-      EmptyView()
+      TeamIntroduceView(coordinator: coordinator)
+        .navigationBarBackButtonHidden()
     case .teamBlog:
-      EmptyView()
+      TeamBlogView(viewModel: .init(coordinator: coordinator))
+        .navigationBarBackButtonHidden()
+
+    case .webView(let url):
+      WebView(coordinator: coordinator, url: url)
     }
   }
 }

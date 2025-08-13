@@ -20,6 +20,12 @@ struct ContentView: View {
   }
 }
 
+
+extension ContentView {
+
+
+}
+
 #Preview {
   ContentView()
     .modelContainer(for: TeamMember.self, inMemory: true)
