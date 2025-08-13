@@ -23,30 +23,39 @@ struct MemberDetailView: View {
   @ObservedObject var coordinator: IntroduceCoordinator
 
   var body: some View {
-    ScrollView {
-      Spacer()
-        .frame(height: 14)
+    ZStack {
+      ScrollView {
+        Spacer()
+          .frame(height: 14)
 
-      CustomNavigationBackBar {
-        coordinator.goBack()
+        CustomNavigationBackBar {
+          coordinator.goBack()
+        }
+
+        Spacer().frame(height: 20)
+
+        VStack(spacing: 20) {
+          MemberProfileView(profile: profile)
+
+          IntroductionView(profile: profile)
+
+          StrengthsView(profile: profile)
+
+          CollabStyleView(profile: profile)
+
+          BlogView(profile: profile)
+        }
+        .padding(.horizontal, 16)
+        .padding(.bottom, 80)
       }
+      .scrollIndicators(.hidden)
 
-      Spacer().frame(height: 20)
-
-      VStack(spacing: 20) {
-        MemberProfileView(profile: profile)
-
-        IntroductionView(profile: profile)
-
-        StrengthsView(profile: profile)
-
-        CollabStyleView(profile: profile)
-
-        BlogView(profile: profile)
+      VStack {
+        Spacer()
 
         EditButton()
+          .padding(.horizontal, 16)
       }
-      .padding(.horizontal, 16)
     }
   }
 }
