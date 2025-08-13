@@ -10,6 +10,7 @@ import SwiftData
 
 struct IntorduceCoordinatorView : View {
   @StateObject private var coordinator =  IntroduceCoordinator()
+  
   var sharedModelContainer: ModelContainer = {
     let schema = Schema([
       Item.self,

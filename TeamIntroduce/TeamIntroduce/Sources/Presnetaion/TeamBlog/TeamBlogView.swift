@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct TeamBlogView: View {
   @Bindable var viewModel: TeamBlogViewModel
 
@@ -210,3 +208,4 @@ extension TeamBlogView {
 #Preview {
   TeamBlogView(viewModel: .init())
 }
+
