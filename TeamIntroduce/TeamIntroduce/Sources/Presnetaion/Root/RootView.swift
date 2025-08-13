@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct RootView: View {
-  @StateObject var coordinator = IntroduceCoordinator()
+//  @StateObject var coordinator = IntroduceCoordinator()
     var body: some View {
         IntorduceCoordinatorView()
-        .environmentObject(coordinator)
+//        .environmentObject(coordinator)
     }
 }
 

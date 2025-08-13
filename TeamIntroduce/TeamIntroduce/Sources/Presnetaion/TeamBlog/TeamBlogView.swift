@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct TeamBlogView: View {
-  @EnvironmentObject var coordinator: IntroduceCoordinator
   @Bindable var viewModel: TeamBlogViewModel
-
 
   init(viewModel: TeamBlogViewModel) {
     self.viewModel = viewModel
@@ -22,32 +20,26 @@ struct TeamBlogView: View {
         .edgesIgnoringSafeArea(.all)
 
       VStack {
-        Spacer()
-          .frame(height: 14)
+        Spacer().frame(height: 14)
 
         CustomNavigationBackBar(text: "팀블로그") {
-          coordinator.goBack()
+          viewModel.send(.backToRoot)
         }
 
-        Spacer()
-          .frame(height: 20)
+        Spacer().frame(height: 20)
 
         blogHeaderView()
 
-        Spacer()
-          .frame(height: 10)
+        Spacer().frame(height: 10)
 
         blogList()
-
 
         Spacer()
 
         blogHintBanner()
 
-        Spacer()
-          .frame(height: 30)
+        Spacer().frame(height: 30)
       }
-
     }
     .onAppear {
       viewModel.send(.onAppear)
@@ -60,9 +52,7 @@ extension TeamBlogView {
   @ViewBuilder
   private func blogHeaderView() -> some View {
     VStack(alignment: .center) {
-      Spacer()
-        .frame(height: 16)
-
+      Spacer().frame(height: 16)
 
       Circle()
         .fill(.gray40)
@@ -72,32 +62,25 @@ extension TeamBlogView {
             .resizable()
             .scaledToFit()
             .frame(width: 30, height: 30)
-
         }
 
-      Spacer()
-        .frame(height: 10)
+      Spacer().frame(height: 10)
 
       HStack {
-
         Spacer()
-
         Text("팀원들의 블로그")
           .pretendardFont(family: .regular, size: 13)
           .foregroundStyle(.staticBlack)
-
         Spacer()
       }
 
-      Spacer()
-        .frame(height: 10)
+      Spacer().frame(height: 10)
 
       Text("각자 공부한 내용및  경험을 공유 하는 공간입니다.")
         .pretendardFont(family: .regular, size: 13)
         .foregroundStyle(.blueGray)
 
-      Spacer()
-        .frame(height: 16)
+      Spacer().frame(height: 16)
 
     }
     .background(
@@ -106,41 +89,37 @@ extension TeamBlogView {
         .shadow(color: .shadowColor, radius: 2)
     )
     .padding(.horizontal, 16)
-
   }
 
-
-
+  // 💡 순차 애니메이션 blog 리스트
   @ViewBuilder
   private func blogList() -> some View {
     if !viewModel.isLoading {
-      VStack {
-        blogListitem(
-          name: "김민희",
-          blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
-          blogLink: "https://0minnie0.tistory.com/",
-          action: { item in
-            viewModel.send(.presentWebView(url: item))
-          }
-        )
 
-        blogListitem(
-          name: "서원지",
-          blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
-          blogLink: "https://velog.io/@suhwj/posts",
-          action: { item in
-            viewModel.send(.presentWebView(url: item))
-          }
-        )
 
-        blogListitem(
-          name: "홍석현",
-          blogTitle: "모바일개발과크로스플랫폼기술을공유합니다",
-          blogLink: "https://velog.io/@gustjrghd/posts",
-          action: { item in
-            viewModel.send(.presentWebView(url: item))
-          }
-        )
+      VStack(spacing: 12) {
+        ForEach(Array(viewModel.blogs.indices), id: \.self) { index in
+            let blog = viewModel.blogs[index]
+          
+            blogListitem(
+                name: blog.name,
+                blogTitle: blog.blogTitle,
+                blogLink: blog.blogLink
+            ) { link in
+                viewModel.send(.presentWebView(url: link))
+            }
+            .opacity(index <= viewModel.currentMaxIndex ? 1 : 0)
+            .offset(y: index <= viewModel.currentMaxIndex ? 0 : 20)
+            .onAppear {
+                guard index > viewModel.currentMaxIndex else { return }
+                let delay = 0.25 + 0.12 * Double(index) // ⏱ 첫 대기, 카드 간 텀 조정
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                    withAnimation(.spring(response: 0.8, dampingFraction: 0.85)) {
+                        viewModel.currentMaxIndex = index
+                    }
+                }
+            }
+        }
       }
     } else {
       ForEach(0..<3, id: \.self) { _ in
@@ -154,16 +133,13 @@ extension TeamBlogView {
     name: String,
     blogTitle: String,
     blogLink: String,
-    action: @escaping (String)  -> Void
+    action: @escaping (String) -> Void
   ) -> some View {
     VStack {
       HStack {
         Circle()
           .fill(.gray.opacity(0.3))
           .frame(width: 40, height: 40)
-          .overlay {
-
-          }
 
         VStack(alignment: .leading) {
           HStack {
@@ -195,10 +171,8 @@ extension TeamBlogView {
         }
 
         Spacer()
-
       }
       .padding(16)
-
     }
     .background(
       RoundedRectangle(cornerRadius: 12)
@@ -222,18 +196,16 @@ extension TeamBlogView {
       }
       .padding(.vertical, 16)
     }
-
     .background(
       RoundedRectangle(cornerRadius: 12)
         .fill(.staticWhite)
         .shadow(color: .shadowColor, radius: 2)
     )
     .padding(.horizontal, 16)
-
   }
-
 }
 
 #Preview {
   TeamBlogView(viewModel: .init())
 }
+

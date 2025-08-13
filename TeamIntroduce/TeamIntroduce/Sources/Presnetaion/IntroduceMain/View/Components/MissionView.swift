@@ -10,7 +10,7 @@ import SwiftUI
 struct MissionView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 12) {
-            Image("MissionLogo")
+          Image(asset: .missionLogo)
                 .renderingMode(.original)
             
             Text("우리의 미션")

@@ -33,7 +33,7 @@ struct TeamExploreRowView: View {
 
       Spacer()
 
-      Image("ArrowRight")
+      Image(asset: .arrowRight)
         .foregroundStyle(Color(hex: "717182"))
     }
     .padding(16)

@@ -8,13 +8,15 @@
 import SwiftUI
 
  struct WebView: View {
+  @ObservedObject var coordinator: IntroduceCoordinator
 
-  @EnvironmentObject var coordinator: IntroduceCoordinator
-  var url: String
-
-  init(url: String) {
-    self.url = url
-  }
+   init(
+    coordinator: IntroduceCoordinator,
+    url: String
+   ) {
+     self._coordinator = ObservedObject(wrappedValue: coordinator)
+     self.url = url
+   }
 
    var body: some View {
     ZStack {
