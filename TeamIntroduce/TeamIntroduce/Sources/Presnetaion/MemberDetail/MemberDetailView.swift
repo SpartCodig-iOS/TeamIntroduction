@@ -44,7 +44,7 @@ struct MemberDetailView: View {
 
         EditButton()
       }
-      .padding(.horizontal, 14)
+      .padding(.horizontal, 16)
     }
   }
 }
