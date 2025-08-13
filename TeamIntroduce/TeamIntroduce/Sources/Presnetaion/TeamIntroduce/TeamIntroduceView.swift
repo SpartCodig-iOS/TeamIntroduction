@@ -9,17 +9,17 @@ import SwiftUI
 
 
 struct TeamIntroduceView: View {
-  @EnvironmentObject var coordinator: IntroduceCoordinator
+  @ObservedObject var coordinator: IntroduceCoordinator
 
   // 현재까지 보여줄 수 있는 최대 인덱스
   @State private var currentMaxIndex: Int = -1
 
   // 소개 아이템 배열
   private let introduceItems: [IntroduceItem] = [
-    .init(image: .TeamInfroduce_Person, title: "다양성 존중", subtitle: "각자의 강점과 개성을 인정하고 서로 보완하며 성장합니다."),
-    .init(image: .TeamInfroduce_Accident, title: "창의적 사고", subtitle: "새로운 아이디어를 자유롭게 제안하고 실험하는 문화를 추구 합니다."),
-    .init(image: .TeamInfroduce_Heart, title: "따뜻한 소통", subtitle: "솔직하고 건설적인 피드백으로 서로를 도우며 성장합니다."),
-    .init(image: .TeamInfroduce_Circle, title: "목표지향", subtitle: "명확한 목표를 설정하고 함께 달성해나가는 팀워크를 발휘합니다.")
+    .init(image: .teamInfroducePerson, title: "다양성 존중", subtitle: "각자의 강점과 개성을 인정하고 서로 보완하며 성장합니다."),
+    .init(image: .teamInfroduceAccident, title: "창의적 사고", subtitle: "새로운 아이디어를 자유롭게 제안하고 실험하는 문화를 추구 합니다."),
+    .init(image: .teamInfroduceHeart, title: "따뜻한 소통", subtitle: "솔직하고 건설적인 피드백으로 서로를 도우며 성장합니다."),
+    .init(image: .teamInfroduceCircle, title: "목표지향", subtitle: "명확한 목표를 설정하고 함께 달성해나가는 팀워크를 발휘합니다.")
   ]
 
   var body: some View {
@@ -55,7 +55,7 @@ extension TeamIntroduceView {
         .pretendardFont(family: .semiBold, size: 16)
         .foregroundStyle(.gray60)
 
-      Image(asset: .TeamiIntroduce)
+      Image(asset: .teamiIntroduce)
         .resizable()
         .scaledToFit()
         .frame(width: 56, height: 56)
@@ -165,5 +165,6 @@ extension TeamIntroduceView {
 }
 
 #Preview {
-  TeamIntroduceView()
+  @Previewable @StateObject var coordinator: IntroduceCoordinator = IntroduceCoordinator()
+  TeamIntroduceView(coordinator: coordinator)
 }

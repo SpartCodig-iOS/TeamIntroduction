@@ -8,13 +8,19 @@
 import SwiftUI
 import Combine
 
+import SwiftUI
+import Observation
+
 @MainActor
 @Observable
 final class TeamBlogViewModel {
   private(set) var isLoading = false
   var currentMaxIndex: Int = -1
 
+  // 라우팅
   private let route: (IntroduceCoordinator.Action) -> Void
+  private let goBack: () -> Void
+
   let blogs: [BlogItem] = [
     .init(name: "김민희",
           blogTitle: "모바일개발과 크로스플랫폼 기술을 공유합니다",
@@ -27,30 +33,33 @@ final class TeamBlogViewModel {
           blogLink: "https://velog.io/@gustjrghd/posts")
   ]
 
-
-
   // MARK: - Init
-  /// 기본값: no-op(코디네이터 주입 안 해도 안전)
-  init(route: @escaping (IntroduceCoordinator.Action) -> Void = { _ in }) {
+  init(
+    route: @escaping (IntroduceCoordinator.Action) -> Void = { _ in },
+    goBack: @escaping () -> Void = {}
+  ) {
     self.route = route
+    self.goBack = goBack
   }
 
-  /// 편의 이니셜라이저: 코디네이터 주입
+  // 코디네이터 주입 편의 생성자
   convenience init(coordinator: IntroduceCoordinator?) {
     if let coordinator {
-      self.init(route: { [weak coordinator] action in coordinator?.send(action) })
+      self.init(
+        route: { [weak coordinator] action in coordinator?.send(action) },
+        goBack: { [weak coordinator] in coordinator?.goBack() }
+      )
     } else {
-      self.init() // no-op
+      self.init()
     }
   }
 
-
-  // MARK: - Action (뷰에서 이 enum만 쓰면 됩니다)
+  // MARK: - Action
   enum Action {
     case onAppear
     case refresh
-
     case presentWebView(url: String)
+    case backToRoot                       
   }
 
   // MARK: - Single entrypoint
@@ -61,16 +70,16 @@ final class TeamBlogViewModel {
 
     case .presentWebView(let url):
       route(.present(.webView(url: url)))
+
+    case .backToRoot:
+      goBack()
     }
   }
 
   // MARK: - Private
   private func fetchIntroductions() async {
     isLoading = true
-    Task {
-      try await Task.sleep(for: .seconds(0.3))
-
-      isLoading = false
-    }
+    defer { isLoading = false }
+    try? await Task.sleep(for: .seconds(0.3))
   }
 }

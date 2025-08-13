@@ -40,11 +40,11 @@ struct IntroductionRowView: View {
 
       Spacer()
 
-      Image("ArrowRight")
+      Image(asset: .arrowRight)
         .foregroundStyle(Color(hex: "717182"))
     }
     .padding(16)
-    .background(Color.staticWhite)
+    .background(.staticWhite)
     .clipShape(RoundedRectangle(cornerRadius: 12))
     .shadow(radius: 1)
   }

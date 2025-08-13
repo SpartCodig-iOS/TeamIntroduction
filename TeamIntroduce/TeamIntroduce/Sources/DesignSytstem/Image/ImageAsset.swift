@@ -15,12 +15,14 @@ enum ImageAsset: String {
   case leftArrow
   case glabal
   case link
-  case TeamAgreementLogo
-  case TeamBlogLogo
-  case TeamIntroductionLogo
-  case TeamiIntroduce
-  case TeamInfroduce_Accident
-  case TeamInfroduce_Heart
-  case TeamInfroduce_Circle
-  case TeamInfroduce_Person
+  case arrowRight
+  case missionLogo
+  case teamAgreementLogo
+  case teamBlogLogo
+  case teamIntroductionLogo
+  case teamiIntroduce
+  case teamInfroduceAccident
+  case teamInfroduceHeart
+  case teamInfroduceCircle
+  case teamInfroducePerson
 }

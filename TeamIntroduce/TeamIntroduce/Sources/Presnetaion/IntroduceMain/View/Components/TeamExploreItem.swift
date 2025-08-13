@@ -40,11 +40,11 @@ enum TeamExploreItem: CaseIterable, Identifiable {
   var imageName: ImageAsset {
     switch self {
     case .introduction:
-      return .TeamIntroductionLogo
+      return .teamIntroductionLogo
     case .agreement:
-      return .TeamAgreementLogo
+      return .teamAgreementLogo
     case .blog:
-      return .TeamBlogLogo
+      return .teamBlogLogo
     }
   }
 }

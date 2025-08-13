@@ -10,10 +10,7 @@ import SwiftUI
 import SwiftUI
 
 struct TeamBlogView: View {
-  @EnvironmentObject var coordinator: IntroduceCoordinator
   @Bindable var viewModel: TeamBlogViewModel
-
-  // 현재까지 보여줄 수 있는 최대 인덱스
 
   init(viewModel: TeamBlogViewModel) {
     self.viewModel = viewModel
@@ -28,7 +25,7 @@ struct TeamBlogView: View {
         Spacer().frame(height: 14)
 
         CustomNavigationBackBar(text: "팀블로그") {
-          coordinator.goBack()
+          viewModel.send(.backToRoot)
         }
 
         Spacer().frame(height: 20)
