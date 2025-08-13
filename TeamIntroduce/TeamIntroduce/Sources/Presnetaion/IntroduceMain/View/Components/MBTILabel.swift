@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public enum MBTI: String, CaseIterable {
+public enum MBTI: String, CaseIterable, Codable {
     case enfp = "ENFP"
     case estp = "ESTP"
     case infj = "INFJ"

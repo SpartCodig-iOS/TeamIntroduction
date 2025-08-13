@@ -115,19 +115,22 @@ extension TeamAgreeMentView {
               .pretendardFont(family: .semiBold, size: 12)
               .foregroundStyle(fontColor)
           }
-        
+
+        Spacer()
+          .frame(width: 10)
+
         VStack(alignment: .leading) {
           HStack {
             Text(agreeMentTitle)
               .pretendardFont(family: .regular, size: 12)
-              .foregroundStyle(.textSecondary)
-            
+              .foregroundStyle(.staticBlack)
+
             Spacer()
           }
           
           Text(agreeMentSubTitle)
             .pretendardFont(family: .regular, size: 12)
-            .foregroundStyle(.textGray100)
+            .foregroundStyle(.textPrimary)
           
         }
         
