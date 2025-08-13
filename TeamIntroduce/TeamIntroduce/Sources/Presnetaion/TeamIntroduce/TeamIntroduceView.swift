@@ -11,10 +11,8 @@ import SwiftUI
 struct TeamIntroduceView: View {
   @ObservedObject var coordinator: IntroduceCoordinator
 
-  // 현재까지 보여줄 수 있는 최대 인덱스
   @State private var currentMaxIndex: Int = -1
 
-  // 소개 아이템 배열
   private let introduceItems: [IntroduceItem] = [
     .init(image: .teamInfroducePerson, title: "다양성 존중", subtitle: "각자의 강점과 개성을 인정하고 서로 보완하며 성장합니다."),
     .init(image: .teamInfroduceAccident, title: "창의적 사고", subtitle: "새로운 아이디어를 자유롭게 제안하고 실험하는 문화를 추구 합니다."),
@@ -74,13 +72,8 @@ extension TeamIntroduceView {
         Spacer()
       }
     }
+    .cardStyle()
     .padding(16)
-    .background(
-      RoundedRectangle(cornerRadius: 12)
-        .fill(.staticWhite)
-        .shadow(color: .shadowColor, radius: 2)
-    )
-    .padding(.horizontal, 16)
   }
 
   // 팀 특징 타이틀
@@ -109,18 +102,7 @@ extension TeamIntroduceView {
           title: item.title,
           subtitle: item.subtitle
         )
-        .opacity(index <= currentMaxIndex ? 1 : 0)
-        .offset(y: index <= currentMaxIndex ? 0 : 12)
-        .onAppear {
-          // 이미 등장한 인덱스는 무시
-          guard index > currentMaxIndex else { return }
-          let delay = 0.25 + 0.15 * Double(index)
-          DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            withAnimation(.spring(response: 0.5, dampingFraction: 0.85)) {
-              currentMaxIndex = index
-            }
-          }
-        }
+        .staggeredAppear(index: index, currentMaxIndex: $currentMaxIndex)
       }
     }
   }
@@ -153,13 +135,9 @@ extension TeamIntroduceView {
 
         Spacer()
       }
-      .padding(16)
+      .padding(.vertical, 10)
     }
-    .background(
-      RoundedRectangle(cornerRadius: 12)
-        .fill(.staticWhite)
-        .shadow(color: .shadowColor, radius: 2)
-    )
+    .cardStyle()
     .padding(.horizontal, 16)
   }
 }
