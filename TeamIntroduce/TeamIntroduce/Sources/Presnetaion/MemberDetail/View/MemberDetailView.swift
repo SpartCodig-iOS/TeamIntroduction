@@ -52,7 +52,10 @@ struct MemberDetailView: View {
                           $viewModel.editingProfile.collabStyle :
               .constant(viewModel.profile.collabStyle))
 
-          BlogView(profile: viewModel.profile)
+          BlogView(isEditing: viewModel.isEditing,
+                   blogURL: viewModel.isEditing ?
+                   $viewModel.editingProfile.blogURL :
+              .constant(viewModel.profile.blogURL))
         }
         .padding(.horizontal, 16)
         .padding(.bottom, 80)
