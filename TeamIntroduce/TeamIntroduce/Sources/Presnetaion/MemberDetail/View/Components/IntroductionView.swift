@@ -16,7 +16,7 @@ struct IntroductionView: View {
         .pretendardFont(family: .semiBold, size: 14)
 
       if isEditing {
-        TextField("", text: $introduction, axis: .vertical)
+        TextField("자기소개", text: $introduction, axis: .vertical)
           .pretendardFont(family: .regular, size: 13)
           .foregroundStyle(.textSecondary100)
           .lineSpacing(5)
