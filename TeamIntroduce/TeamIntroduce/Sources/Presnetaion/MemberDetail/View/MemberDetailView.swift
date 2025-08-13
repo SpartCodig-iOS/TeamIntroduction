@@ -40,9 +40,12 @@ struct MemberDetailView: View {
           IntroductionView(isEditing: viewModel.isEditing,
                            introduction: viewModel.isEditing ?
                            $viewModel.editingProfile.introduction :
-                           .constant(viewModel.profile.introduction))
+              .constant(viewModel.profile.introduction))
 
-          StrengthsView(profile: viewModel.profile)
+          StrengthsView(isEditing: viewModel.isEditing,
+                        strengths: viewModel.isEditing ?
+                        $viewModel.editingProfile.strengths :
+              .constant(viewModel.profile.strengths))
 
           CollabStyleView(profile: viewModel.profile)
 

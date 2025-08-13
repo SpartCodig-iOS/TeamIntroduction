@@ -11,7 +11,9 @@ struct EditButton: View {
   var action: () -> Void
 
   var body: some View {
-    Button(action: { action()}) {
+    Button {
+      action()
+    } label: {
       Text(text)
         .foregroundColor(.white)
     }
