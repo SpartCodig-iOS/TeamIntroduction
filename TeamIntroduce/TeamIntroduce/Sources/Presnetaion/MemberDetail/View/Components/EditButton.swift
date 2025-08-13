@@ -7,14 +7,17 @@
 import SwiftUI
 
 struct EditButton: View {
-    var body: some View {
-        Button(action: {}) {
-            Text("수정")
-                .foregroundColor(.white)
-        }
-        .frame(maxWidth: .infinity)
-        .frame(height: 48)
-        .background(.backGroundPrimary)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+  var text: String
+  var action: () -> Void
+
+  var body: some View {
+    Button(action: { action()}) {
+      Text(text)
+        .foregroundColor(.white)
     }
+    .frame(maxWidth: .infinity)
+    .frame(height: 48)
+    .background(.backGroundPrimary)
+    .clipShape(RoundedRectangle(cornerRadius: 16))
+  }
 }

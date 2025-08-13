@@ -53,8 +53,17 @@ struct MemberDetailView: View {
       VStack {
         Spacer()
 
-        EditButton()
-          .padding(.horizontal, 16)
+        if viewModel.isEditing {
+          EditButton(text: "저장") {
+            viewModel.saveEditing()
+          }
+            .padding(.horizontal, 16)
+        } else {
+          EditButton(text: "수정") {
+            viewModel.startEditing()
+          }
+            .padding(.horizontal, 16)
+        }
       }
     }
   }
