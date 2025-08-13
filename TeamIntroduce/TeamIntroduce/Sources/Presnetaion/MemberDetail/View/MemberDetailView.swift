@@ -69,14 +69,13 @@ struct MemberDetailView: View {
           EditButton(text: "저장") {
             viewModel.saveEditing()
           }
-            .padding(.horizontal, 16)
         } else {
           EditButton(text: "수정") {
             viewModel.startEditing()
           }
-            .padding(.horizontal, 16)
         }
       }
+      .padding(.horizontal, 16)
     }
   }
 }
