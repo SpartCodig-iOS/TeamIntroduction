@@ -81,9 +81,9 @@ struct TeamIntroduceApp: App {
                 role: "iOS Developer",
                 mbti: .intp,
                 introduction: "좀 큰 기업에  입사를 하고 다양한 프로젝트르 하고 싶습니다",
-                strengths: ["Swift", "RxSwift", "Clean Architecture", "Firebase Integration"],
+                strengths: ["Swift", "SwiftUI", "Clean Architecture", "Swift Concurrency", "TCA", "Tuist", "RxSwift"],
                 blogLink: "https://velog.io/@suhwj/posts",
-                collaborationStyle: "창의적 문제해결, 사용자 중심 사고, 논리적 분석, 기술 연구"
+                collaborationStyle: "창의적 문제해결, 사용자 중심 사고, 코드리뷰, 팀 리딩, 지식 공유"
             ),
             TeamMember(
                 name: "홍석현",
