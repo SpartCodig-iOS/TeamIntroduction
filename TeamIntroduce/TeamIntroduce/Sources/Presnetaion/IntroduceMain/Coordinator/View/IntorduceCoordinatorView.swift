@@ -45,8 +45,8 @@ extension IntorduceCoordinatorView {
       MemberDetailView(coordinator: coordinator)
         .navigationBarBackButtonHidden()
     case .teamAgreement:
-      ContentView()
-        .navigationBarBackButtonHidden()
+        TeamAgreeMentView(coordinator: coordinator)
+          .navigationBarBackButtonHidden()
     case .teamIntroduce:
       TeamIntroduceView(coordinator: coordinator)
         .navigationBarBackButtonHidden()
