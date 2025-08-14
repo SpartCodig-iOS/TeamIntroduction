@@ -1,20 +1,21 @@
 //
-//  StrengthsView.swift
+//  StrengthsDisplayView.swift
 //  TeamIntroduce
 //
 //  Created by 김민희 on 8/12/25.
 //
 import SwiftUI
 
-struct StrengthsView: View {
-  let profile: MemberProfile
-  
+struct StrengthsDisplayView: View {
+  var strengths: [String]
+
   var body: some View {
     VStack(alignment: .leading, spacing: 14) {
       Text("주요장점")
         .pretendardFont(family: .semiBold, size: 14)
+
       VStack {
-        ForEach(profile.strengths, id: \.self) { item in
+        ForEach(strengths, id: \.self) { item in
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Circle().frame(width: 5, height: 5)
             Text(item)

@@ -14,7 +14,7 @@ import SwiftUI
 
   init(
     text: String = "",
-    buttonAction: @escaping () -> Void,
+    buttonAction: @escaping () -> Void
   ) {
     self.buttonAction = buttonAction
     self.text = text
