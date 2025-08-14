@@ -76,7 +76,7 @@ extension ShapeStyle where Self == Color {
   // MARK: - NatureBlue
 
   static var blue10: Color { .init(hex: "155DFC") }
-  static var blue20: Color { .init(hex: "E1EAFF") }
+  static var blue20: Color { .init(hex: "5E8CFD") }
   static var blue30: Color { .init(hex: "C1D3FF") }
   static var blue40: Color { .init(hex: "0D82F9") }
   static var blue50: Color { .init(hex: "0c75e0") }
@@ -88,7 +88,7 @@ extension ShapeStyle where Self == Color {
 
   // MARK: - NatureRed
 
-  static var red10: Color { .init(hex: "ffe7e6") }
+  static var red10: Color { .init(hex: "EC484A") }
   static var red20: Color { .init(hex: "ffdbda") }
   static var red30: Color { .init(hex: "feb5b2") }
   static var red40: Color { .init(hex: "fd1008") }
@@ -109,7 +109,14 @@ extension ShapeStyle where Self == Color {
 
 
   static var green: Color { .init(hex: "00A63E") }
+  static var green10: Color { .init(hex: "4CBC6F") }
+
   static var lightPurple: Color { .init(hex: "9810FA") }
+  static var lightPurple10: Color { .init(hex: "B04EFC") }
+
+  static var orange10: Color { .init(hex: "F77B41") }
+
+
   static var error: Color { .init(hex: "FF5050") }
   static var basicBlue: Color { .init(hex: "0099FF") }
 

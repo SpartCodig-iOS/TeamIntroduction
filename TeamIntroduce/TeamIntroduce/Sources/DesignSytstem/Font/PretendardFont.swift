@@ -30,7 +30,7 @@ struct PretendardFont: ViewModifier {
 }
 
  extension Font {
-  static func pretendardFontFamily(family: PretendardFontFamily, size: CGFloat) -> Font{
+  static func pretendardFont(family: PretendardFontFamily, size: CGFloat) -> Font{
     let font = Font.custom("PretendardVariable-\(family)", size: size)
     return font
   }

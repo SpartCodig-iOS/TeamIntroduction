@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct IntroductionMainView: View {
   @State private var viewModel: IntroductionViewModel
@@ -34,6 +35,7 @@ struct IntroductionMainView: View {
             ForEach(viewModel.introductions) { model in
               IntroductionRowView(model: model)
                 .onTapGesture {
+                  print(model.id)
                   viewModel.send(.presentMemberDetail)
                 }
             }

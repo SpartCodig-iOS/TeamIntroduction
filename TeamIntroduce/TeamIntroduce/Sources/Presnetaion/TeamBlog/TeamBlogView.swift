@@ -15,31 +15,26 @@ struct TeamBlogView: View {
   }
 
   var body: some View {
-    ZStack {
-      Color.white
-        .edgesIgnoringSafeArea(.all)
+    VStack {
+      Spacer().frame(height: 14)
 
-      VStack {
-        Spacer().frame(height: 14)
-
-        CustomNavigationBackBar(text: "팀블로그") {
-          viewModel.send(.backToRoot)
-        }
-
-        Spacer().frame(height: 20)
-
-        blogHeaderView()
-
-        Spacer().frame(height: 10)
-
-        blogList()
-
-        Spacer()
-
-        blogHintBanner()
-
-        Spacer().frame(height: 30)
+      CustomNavigationBackBar(text: "팀블로그") {
+        viewModel.send(.backToRoot)
       }
+
+      Spacer().frame(height: 20)
+
+      blogHeaderView()
+
+      Spacer().frame(height: 10)
+
+      blogList()
+
+      Spacer()
+
+      blogHintBanner()
+
+      Spacer().frame(height: 30)
     }
     .onAppear {
       viewModel.send(.onAppear)
@@ -83,11 +78,7 @@ extension TeamBlogView {
       Spacer().frame(height: 16)
 
     }
-    .background(
-      RoundedRectangle(cornerRadius: 12)
-        .fill(.staticWhite)
-        .shadow(color: .shadowColor, radius: 2)
-    )
+    .cardStyle()
     .padding(.horizontal, 16)
   }
 
@@ -108,17 +99,7 @@ extension TeamBlogView {
             ) { link in
                 viewModel.send(.presentWebView(url: link))
             }
-            .opacity(index <= viewModel.currentMaxIndex ? 1 : 0)
-            .offset(y: index <= viewModel.currentMaxIndex ? 0 : 20)
-            .onAppear {
-                guard index > viewModel.currentMaxIndex else { return }
-                let delay = 0.25 + 0.12 * Double(index) // ⏱ 첫 대기, 카드 간 텀 조정
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    withAnimation(.spring(response: 0.8, dampingFraction: 0.85)) {
-                        viewModel.currentMaxIndex = index
-                    }
-                }
-            }
+            .staggeredAppear(index: index, currentMaxIndex: $viewModel.currentMaxIndex, baseDelay: 0.55, stepDelay: 0.3, hiddenYOffset: 60)
         }
       }
     } else {
@@ -172,13 +153,9 @@ extension TeamBlogView {
 
         Spacer()
       }
-      .padding(16)
+      .padding(.vertical, 16)
     }
-    .background(
-      RoundedRectangle(cornerRadius: 12)
-        .fill(.staticWhite)
-        .shadow(color: .shadowColor, radius: 2)
-    )
+    .cardStyle()
     .padding(.horizontal, 16)
   }
 
@@ -194,13 +171,9 @@ extension TeamBlogView {
 
         Spacer()
       }
-      .padding(.vertical, 16)
+      .padding(.vertical, 10)
     }
-    .background(
-      RoundedRectangle(cornerRadius: 12)
-        .fill(.staticWhite)
-        .shadow(color: .shadowColor, radius: 2)
-    )
+    .cardStyle()
     .padding(.horizontal, 16)
   }
 }

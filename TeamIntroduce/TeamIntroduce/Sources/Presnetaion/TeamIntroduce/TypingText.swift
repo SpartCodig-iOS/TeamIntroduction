@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TypingText: View {
   let text: String
-  var font: Font = .pretendardFontFamily(family: .semiBold, size: 20)
+  var font: Font = .pretendardFont(family: .semiBold, size: 20)
   var perChar: Double = 0.05     // 글자당 지연(초)
   var startDelay: Double = 0.0   // 시작 지연(초)
   var showsCursor: Bool = true   // 커서 표시 여부
