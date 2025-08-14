@@ -37,25 +37,23 @@ struct MemberDetailView: View {
         VStack(spacing: 20) {
           MemberProfileView(profile: viewModel.profile)
 
-          IntroductionView(isEditing: viewModel.isEditing,
-                           introduction: viewModel.isEditing ?
-                           $viewModel.editingProfile.introduction :
-              .constant(viewModel.profile.introduction))
+          if viewModel.isEditing {
+            IntroductionEditView(introduction: $viewModel.editingProfile.introduction)
 
-          StrengthsView(isEditing: viewModel.isEditing,
-                        strengths: viewModel.isEditing ?
-                        $viewModel.editingProfile.strengths :
-              .constant(viewModel.profile.strengths))
+            StrengthsEditView(strengths: $viewModel.editingProfile.strengths)
 
-          CollabStyleView(isEditing: viewModel.isEditing,
-                          collabStyle: viewModel.isEditing ?
-                          $viewModel.editingProfile.collabStyle :
-              .constant(viewModel.profile.collabStyle))
+            CollabStyleEditView(collabStyle: $viewModel.editingProfile.collabStyle)
 
-          BlogView(isEditing: viewModel.isEditing,
-                   blogURL: viewModel.isEditing ?
-                   $viewModel.editingProfile.blogURL :
-              .constant(viewModel.profile.blogURL))
+            BlogEditView(blogURL: $viewModel.editingProfile.blogURL)
+          } else {
+            IntroductionDisplayView(introduction: viewModel.profile.introduction)
+
+            StrengthsDisplayView(strengths: viewModel.profile.strengths)
+
+            CollabStyleDisplayView(collabStyle: viewModel.profile.collabStyle)
+
+            BlogDisplayView(blogURL: viewModel.profile.blogURL)
+          }
         }
         .padding(.horizontal, 16)
         .padding(.bottom, 80)
