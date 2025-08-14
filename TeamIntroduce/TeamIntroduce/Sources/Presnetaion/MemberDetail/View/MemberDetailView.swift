@@ -24,7 +24,12 @@ struct MemberDetailView: View {
       if let member = viewModel.member {
         ScrollView {
           Spacer().frame(height: 14)
-          CustomNavigationBackBar { coordinator.goBack() }
+          CustomNavigationBackBar(text: "팀원 소개", buttonAction: {
+            if viewModel.isEditing {
+              viewModel.cancelEditing()
+            }
+            coordinator.goBack()
+          })
           Spacer().frame(height: 20)
 
           VStack(spacing: 20) {
