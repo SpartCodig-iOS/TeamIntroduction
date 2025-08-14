@@ -15,24 +15,19 @@ struct TeamAgreeMentView: View {
   
   
   var body: some View {
-    ZStack {
-      Color.white
-        .edgesIgnoringSafeArea(.all)
-      
-      VStack {
-        Spacer()
-          .frame(height: 14)
-        
-        CustomNavigationBackBar(text: "팀 약속") {
-          coordinator.goBack()
-        }
-        
-        
-        teamAgreeMentHeader()
-        
-        agreeMentCard()
-        
+    VStack {
+      Spacer()
+        .frame(height: 14)
+
+      CustomNavigationBackBar(text: "팀 약속") {
+        coordinator.goBack()
       }
+
+
+      teamAgreeMentHeader()
+
+      agreeMentCard()
+
     }
   }
 }
@@ -41,13 +36,12 @@ extension TeamAgreeMentView {
   
   @ViewBuilder
   private func teamAgreeMentHeader() -> some View {
-    VStack {
+    VStack(spacing: 10) {
       Image(asset: .teamiIntroduce)
         .resizable()
         .scaledToFit()
         .frame(width: 56, height: 56)
-      
-      Spacer().frame(height: 10)
+
       
       HStack {
         Spacer()
@@ -58,14 +52,13 @@ extension TeamAgreeMentView {
         
         Spacer()
       }
-      
-      Spacer().frame(height: 10)
+
       
       HStack {
         Spacer()
         TypingText(
           text: "더 나은 팀이 되기 위해 함께 지켜나갈 소중한 약속들입니다.",
-          font: .pretendardFontFamily(family: .bold, size: 16),
+          font: .pretendardFont(family: .bold, size: 16),
           perChar: 0.06,
           startDelay: 0.15,
           showsCursor: false
@@ -83,7 +76,7 @@ extension TeamAgreeMentView {
     ScrollView(.vertical) {
       ForEach(indices, id: \.self) { index in
         let item = agreeMentItem[index]
-        agreeMenListitem(
+        agreeMentListitem(
           number: item.number,
           agreeMentTitle: item.agreeMentTitle,
           agreeMentSubTitle: item.agreeMentSubTitle,
@@ -98,7 +91,7 @@ extension TeamAgreeMentView {
   
   
   @ViewBuilder
-  private func agreeMenListitem(
+  private func agreeMentListitem(
     number: Int,
     agreeMentTitle: String,
     agreeMentSubTitle: String,

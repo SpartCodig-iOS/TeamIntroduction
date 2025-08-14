@@ -20,25 +20,20 @@ import SwiftUI
    }
 
    var body: some View {
-    ZStack {
-      Color.white
-        .edgesIgnoringSafeArea(.all)
+     VStack {
+       Spacer()
+         .frame(height: 14)
 
-      VStack {
-        Spacer()
-          .frame(height: 14)
+       CustomNavigationBackBar(text: ""){
+         coordinator.goBack()
+       }
 
-        CustomNavigationBackBar(text: ""){
-          coordinator.goBack()
-        }
+       Spacer()
+         .frame(height: 16)
 
-        Spacer()
-          .frame(height: 16)
-
-       WebRepresentableView(urlToLoad: url)
-      }
-      .navigationBarBackButtonHidden(true)
-    }
+      WebRepresentableView(urlToLoad: url)
+     }
+     .navigationBarBackButtonHidden(true)
   }
 }
 

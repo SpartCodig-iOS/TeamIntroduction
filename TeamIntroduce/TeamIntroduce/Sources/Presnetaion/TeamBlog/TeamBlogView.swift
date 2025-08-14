@@ -15,31 +15,26 @@ struct TeamBlogView: View {
   }
 
   var body: some View {
-    ZStack {
-      Color.white
-        .edgesIgnoringSafeArea(.all)
+    VStack {
+      Spacer().frame(height: 14)
 
-      VStack {
-        Spacer().frame(height: 14)
-
-        CustomNavigationBackBar(text: "팀블로그") {
-          viewModel.send(.backToRoot)
-        }
-
-        Spacer().frame(height: 20)
-
-        blogHeaderView()
-
-        Spacer().frame(height: 10)
-
-        blogList()
-
-        Spacer()
-
-        blogHintBanner()
-
-        Spacer().frame(height: 30)
+      CustomNavigationBackBar(text: "팀블로그") {
+        viewModel.send(.backToRoot)
       }
+
+      Spacer().frame(height: 20)
+
+      blogHeaderView()
+
+      Spacer().frame(height: 10)
+
+      blogList()
+
+      Spacer()
+
+      blogHintBanner()
+
+      Spacer().frame(height: 30)
     }
     .onAppear {
       viewModel.send(.onAppear)

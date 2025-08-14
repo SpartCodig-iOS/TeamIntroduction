@@ -21,25 +21,20 @@ struct TeamIntroduceView: View {
   ]
 
   var body: some View {
-    ZStack {
-      Color.staticWhite
-        .edgesIgnoringSafeArea(.all)
+    VStack {
+      Spacer().frame(height: 14)
 
-      VStack {
-        Spacer().frame(height: 14)
-
-        CustomNavigationBackBar(text: "팀소개") {
-          coordinator.goBack()
-        }
-
-        Spacer().frame(height: 20)
-
-        teamIntorduceHeader()
-        teamIntroduceList()
-        introduceList()
-
-        Spacer()
+      CustomNavigationBackBar(text: "팀소개") {
+        coordinator.goBack()
       }
+
+      Spacer().frame(height: 20)
+
+      teamIntorduceHeader()
+      teamIntroduceList()
+      introduceList()
+
+      Spacer()
     }
   }
 }
@@ -64,7 +59,7 @@ extension TeamIntroduceView {
         Spacer()
         TypingText(
           text: "안녕하세요 1조입니다! 👋",
-          font: .pretendardFontFamily(family: .bold, size: 16),
+          font: .pretendardFont(family: .bold, size: 16),
           perChar: 0.06,
           startDelay: 0.15,
           showsCursor: false
