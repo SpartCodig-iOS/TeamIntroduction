@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct CollabStyleEditView: View {
-  @Binding var collabStyle: String
+  @Bindable var member: TeamMember
 
 
   var body: some View {
@@ -15,7 +15,7 @@ struct CollabStyleEditView: View {
       Text("협업스타일")
         .pretendardFont(family: .semiBold, size: 14)
 
-      TextField("협업스타일", text: $collabStyle, axis: .vertical)
+      TextField("협업스타일", text: $member.collaborationStyle, axis: .vertical)
         .pretendardFont(family: .regular, size: 13)
         .foregroundStyle(.textSecondary100)
         .lineSpacing(5)

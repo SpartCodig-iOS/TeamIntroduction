@@ -10,11 +10,11 @@ import SwiftData
 
 @Model
 final class TeamMember: Identifiable {
-    var id: UUID
+    @Attribute(.unique)var id: UUID
     var name: String
     var imageName: String
     var role: String
-    var mbti: String
+    var mbti: MBTI?
     var introduction: String
     var strengths: [String]
     var blogLink: String
@@ -26,7 +26,7 @@ final class TeamMember: Identifiable {
         name: String,
         imageName: String,
         role: String,
-        mbti: String,
+        mbti: MBTI?,
         introduction: String,
         strengths: [String],
         blogLink: String,

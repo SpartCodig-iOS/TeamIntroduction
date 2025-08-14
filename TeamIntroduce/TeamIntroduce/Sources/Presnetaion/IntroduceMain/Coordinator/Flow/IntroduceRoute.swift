@@ -18,7 +18,7 @@ enum IntroduceRoute: Hashable {
   // 팀 블로그
   case teamBlog
   // 멤버 상세 페이지
-  case memberDetail
+  case memberDetail(id: UUID)
 
   // webView
   case webView(url: String)

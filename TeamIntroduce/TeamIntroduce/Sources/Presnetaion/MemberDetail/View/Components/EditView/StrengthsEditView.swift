@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct StrengthsEditView: View {
-  @Binding var strengths: [String]
+  @Bindable var member: TeamMember
 
   var body: some View {
     VStack(alignment: .leading, spacing: 14) {
@@ -15,16 +15,16 @@ struct StrengthsEditView: View {
         .pretendardFont(family: .semiBold, size: 14)
 
       VStack {
-        ForEach(strengths.indices, id: \.self) { index in
+        ForEach(member.strengths.indices, id: \.self) { index in
           HStack {
             Button {
-              strengths.remove(at: index)
+              member.strengths.remove(at: index)
             } label: {
               Image(systemName: "minus.circle.fill")
                 .foregroundStyle(.red)
             }
 
-            TextField("", text: $strengths[index])
+            TextField("", text: $member.strengths[index])
               .pretendardFont(family: .regular, size: 13)
               .foregroundStyle(.textSecondary100)
               .lineLimit(1...5)
@@ -32,7 +32,7 @@ struct StrengthsEditView: View {
         }
 
         Button {
-          strengths.append("")
+          member.strengths.append("")
         } label: {
           HStack {
             Image(systemName: "plus.circle.fill")

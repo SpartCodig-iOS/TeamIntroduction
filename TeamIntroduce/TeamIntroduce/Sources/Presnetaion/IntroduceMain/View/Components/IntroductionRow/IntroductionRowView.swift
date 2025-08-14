@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct IntroductionRowView: View {
-  private let model: IntroductionRowModel
+  private let model: TeamMember
 
-  init(model: IntroductionRowModel) {
+  init(model: TeamMember) {
     self.model = model
   }
 
@@ -35,7 +35,7 @@ struct IntroductionRowView: View {
           .pretendardFont(family: .regular, size: 12)
           .foregroundStyle(.textSecondary)
 
-        MBTILabel(mbti: model.mbti)
+        MBTILabel(mbti: model.mbti ?? .enfp)
       }
 
       Spacer()
@@ -48,8 +48,4 @@ struct IntroductionRowView: View {
     .clipShape(RoundedRectangle(cornerRadius: 12))
     .shadow(radius: 1)
   }
-}
-
-#Preview {
-  IntroductionRowView(model: IntroductionRowModel.mockData[0])
 }

@@ -7,14 +7,14 @@
 import SwiftUI
 
 struct MemberProfileView: View {
-  let profile: MemberProfile
+  let profile: TeamMember
 
   var body: some View {
     HStack {
       Spacer()
 
       VStack(spacing: 7) {
-        Image(systemName: profile.image)
+        Image(systemName: profile.imageName)
           .font(.system(size: 40))
 
         Text(profile.name)
@@ -25,7 +25,7 @@ struct MemberProfileView: View {
           .foregroundStyle(.textSecondary100)
 
 
-        Text(profile.mbti)
+        Text(profile.mbti?.rawValue ?? "")
           .pretendardFont(family: .regular, size: 13)
           .padding(.horizontal, 12)
           .padding(.vertical, 6)

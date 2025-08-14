@@ -30,7 +30,7 @@ struct TeamIntroduceApp: App {
         let context = container.mainContext
         
         // 🔍 기존 데이터 확인
-        let descriptor = FetchDescriptor<TeamMember>()
+      let descriptor = FetchDescriptor<TeamMember>(sortBy: [SortDescriptor(\.name, order: .forward)])
         let existingCount = (try? context.fetch(descriptor).count) ?? 0
         
         print("📊 기존 팀원 데이터 개수: \(existingCount)")
@@ -68,7 +68,7 @@ struct TeamIntroduceApp: App {
                 name: "김민희",
                 imageName: "person.crop.circle",
                 role: "iOS Developer",
-                mbti: "ESTP",
+                mbti: .estp,
                 introduction: "캠프 후 되고 싶은 나의 모습 혹은 미래의 나의 모습을 한마디로 적어보세요! 생생하게 꿈꾸면 이루어진답니다!",
                 strengths: ["UIKit", "Core Data", "Auto Layout", "Unit Testing"],
                 blogLink: "https://0minnie0.tistory.com/",
@@ -79,17 +79,17 @@ struct TeamIntroduceApp: App {
                 name: "서원지",
                 imageName: "person.crop.circle.fill",
                 role: "iOS Developer",
-                mbti: "INTP",
+                mbti: .intp,
                 introduction: "좀 큰 기업에  입사를 하고 다양한 프로젝트르 하고 싶습니다",
-                strengths: ["Swift", "RxSwift", "Clean Architecture", "Firebase Integration"],
+                strengths: ["Swift", "SwiftUI", "Clean Architecture", "Swift Concurrency", "TCA", "Tuist", "RxSwift"],
                 blogLink: "https://velog.io/@suhwj/posts",
-                collaborationStyle: "창의적 문제해결, 사용자 중심 사고, 논리적 분석, 기술 연구"
+                collaborationStyle: "창의적 문제해결, 사용자 중심 사고, 코드리뷰, 팀 리딩, 지식 공유"
             ),
             TeamMember(
                 name: "홍석현",
                 imageName: "person.circle.fill",
                 role: "iOS Developer",
-                mbti: "ENFJ",
+                mbti: .enfj,
                 introduction: "안녕하세요! 열정적인 iOS 개발자입니다.",
                 strengths: ["SwiftUI", "Combine", "Swift Concurrency", "MVVM Architecture"],
                 blogLink: "https://blog.example.com/hong",

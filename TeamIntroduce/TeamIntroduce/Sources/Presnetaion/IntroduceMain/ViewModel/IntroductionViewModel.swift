@@ -8,38 +8,41 @@
 import Foundation
 import SwiftUI
 import Combine
+import SwiftData
 
 @MainActor
 @Observable
 final class IntroductionViewModel {
 
   // MARK: - State
-   private(set) var introductions: [IntroductionRowModel] = []
-   private(set) var isLoading = false
+  private(set) var introductions: [TeamMember] = []
+  private(set) var isLoading = false
 
   // 네비게이션을 코디네이터로 위임하는 라우팅 클로저
   private let route: (IntroduceCoordinator.Action) -> Void
+  private let modelContext: ModelContext
 
   // MARK: - Action (뷰에서 이 enum만 쓰면 됩니다)
   enum Action {
     case onAppear
     case refresh
     case tapMoreInfo(TeamExploreItem)
-    case presentMemberDetail
+    case presentMemberDetail(id: UUID)
   }
 
   // MARK: - Init
   /// 기본값: no-op(코디네이터 주입 안 해도 안전)
-  init(route: @escaping (IntroduceCoordinator.Action) -> Void = { _ in }) {
+  init(route: @escaping (IntroduceCoordinator.Action) -> Void = { _ in }, modelContext: ModelContext) {
     self.route = route
+    self.modelContext = modelContext
   }
 
   /// 편의 이니셜라이저: 코디네이터 주입
-  convenience init(coordinator: IntroduceCoordinator?) {
+  convenience init(coordinator: IntroduceCoordinator?, modelContext: ModelContext) {
     if let coordinator {
-      self.init(route: { [weak coordinator] action in coordinator?.send(action) })
+      self.init(route: { [weak coordinator] action in coordinator?.send(action) }, modelContext: modelContext)
     } else {
-      self.init() // no-op
+      self.init(modelContext: modelContext) // no-op
     }
   }
 
@@ -59,8 +62,8 @@ final class IntroductionViewModel {
         route(.present(.teamBlog))
       }
 
-    case .presentMemberDetail:
-      route(.present(.memberDetail))
+    case .presentMemberDetail(let id):
+      route(.present(.memberDetail(id: id)))
     }
   }
 
@@ -70,9 +73,9 @@ final class IntroductionViewModel {
     defer { isLoading = false }
 
     do {
-      // mock delay
-      try await Task.sleep(nanoseconds: 2_000_000_000)
-      introductions = IntroductionRowModel.mockData
+      let descriptor = FetchDescriptor<TeamMember>(sortBy: [SortDescriptor(\.name, order: .forward)])
+      let members = try modelContext.fetch(descriptor)
+      introductions = members
     } catch {
       introductions = []
     }

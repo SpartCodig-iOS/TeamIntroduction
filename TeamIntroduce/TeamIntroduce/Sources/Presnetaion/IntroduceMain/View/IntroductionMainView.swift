@@ -36,7 +36,7 @@ struct IntroductionMainView: View {
               IntroductionRowView(model: model)
                 .onTapGesture {
                   print(model.id)
-                  viewModel.send(.presentMemberDetail)
+                  viewModel.send(.presentMemberDetail(id: model.id))
                 }
             }
           }
@@ -63,8 +63,4 @@ struct IntroductionMainView: View {
       viewModel.send(.onAppear)
     }
   }
-}
-
-#Preview {
-  IntroductionMainView(viewModel: IntroductionViewModel())
 }
