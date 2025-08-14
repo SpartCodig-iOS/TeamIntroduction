@@ -7,14 +7,14 @@
 import SwiftUI
 
 struct IntroductionEditView: View {
-  @Binding var introduction: String
+  @Bindable var member: TeamMember
 
   var body: some View {
     VStack(alignment: .leading, spacing: 14) {
       Text("자기소개")
         .pretendardFont(family: .semiBold, size: 14)
 
-      TextField("", text: $introduction, axis: .vertical)
+      TextField("", text: $member.introduction, axis: .vertical)
         .pretendardFont(family: .regular, size: 13)
         .foregroundStyle(.textSecondary100)
         .lineSpacing(5)

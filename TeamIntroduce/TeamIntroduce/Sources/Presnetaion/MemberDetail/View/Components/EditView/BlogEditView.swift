@@ -7,14 +7,14 @@
 import SwiftUI
 
 struct BlogEditView: View {
-  @Binding var blogURL: String
+  @Bindable var member: TeamMember
 
   var body: some View {
     VStack(alignment: .leading, spacing: 14) {
       Text("블로그")
         .pretendardFont(family: .semiBold, size: 14)
 
-      TextField("블로그 URL", text: $blogURL)
+      TextField("블로그 URL", text: $member.blogLink)
         .pretendardFont(family: .regular, size: 13)
         .cardStyle()
     }

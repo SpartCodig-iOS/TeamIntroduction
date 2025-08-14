@@ -10,7 +10,8 @@ import SwiftData
 
 struct IntorduceCoordinatorView : View {
   @StateObject private var coordinator =  IntroduceCoordinator()
-  
+  @Environment(\.modelContext) private var modelContext
+
   var sharedModelContainer: ModelContainer = {
     let schema = Schema([
       TeamMember.self,
@@ -26,7 +27,7 @@ struct IntorduceCoordinatorView : View {
 
   var body: some View {
     NavigationStack(path: $coordinator.path) {
-      IntroductionMainView(viewModel: IntroductionViewModel(coordinator: coordinator))
+      IntroductionMainView(viewModel: IntroductionViewModel(coordinator: coordinator, modelContext: modelContext))
         .navigationDestination(for: IntroduceRoute.self, destination: makeDestination)
     }
     .modelContainer(sharedModelContainer)
@@ -39,10 +40,10 @@ extension IntorduceCoordinatorView {
   private func makeDestination(for route: IntroduceRoute) -> some View {
     switch route {
     case .introduceMain:
-      IntroductionMainView(viewModel: IntroductionViewModel(coordinator: coordinator))
+      IntroductionMainView(viewModel: IntroductionViewModel(coordinator: coordinator, modelContext: modelContext))
 
-    case .memberDetail:
-      MemberDetailView(coordinator: coordinator)
+    case .memberDetail(let id):
+      MemberDetailView(coordinator: coordinator, id: id, modelContext: modelContext)
         .navigationBarBackButtonHidden()
     case .teamAgreement:
       ContentView()
