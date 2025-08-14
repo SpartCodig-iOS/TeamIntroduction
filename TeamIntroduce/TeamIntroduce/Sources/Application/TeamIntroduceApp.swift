@@ -30,7 +30,7 @@ struct TeamIntroduceApp: App {
         let context = container.mainContext
         
         // 🔍 기존 데이터 확인
-        let descriptor = FetchDescriptor<TeamMember>()
+      let descriptor = FetchDescriptor<TeamMember>(sortBy: [SortDescriptor(\.name, order: .forward)])
         let existingCount = (try? context.fetch(descriptor).count) ?? 0
         
         print("📊 기존 팀원 데이터 개수: \(existingCount)")

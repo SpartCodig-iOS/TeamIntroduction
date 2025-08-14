@@ -73,7 +73,7 @@ final class IntroductionViewModel {
     defer { isLoading = false }
 
     do {
-      let descriptor = FetchDescriptor<TeamMember>()
+      let descriptor = FetchDescriptor<TeamMember>(sortBy: [SortDescriptor(\.name, order: .forward)])
       let members = try modelContext.fetch(descriptor)
       introductions = members
     } catch {
