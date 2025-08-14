@@ -13,7 +13,7 @@ struct IntorduceCoordinatorView : View {
   
   var sharedModelContainer: ModelContainer = {
     let schema = Schema([
-      IntroductionRowModels.self,
+      TeamMember.self,
     ])
     let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -45,7 +45,7 @@ extension IntorduceCoordinatorView {
       MemberDetailView(coordinator: coordinator)
         .navigationBarBackButtonHidden()
     case .teamAgreement:
-      TeamAgreeMentView(coordinator: coordinator)
+      ContentView()
         .navigationBarBackButtonHidden()
     case .teamIntroduce:
       TeamIntroduceView(coordinator: coordinator)
