@@ -26,7 +26,7 @@ final class TeamBlogViewModel {
           blogTitle: "모바일개발과 크로스플랫폼 기술을 공유합니다",
           blogLink: "https://velog.io/@suhwj/posts"),
     .init(name: "홍석현",
-          blogTitle: "모바일개발과 크로스플랫폼 기술을 공유합니다",
+          blogTitle: "(한 입 뺏긴) 사과일지입니다.",
           blogLink: "https://velog.io/@gustjrghd/posts")
   ]
 

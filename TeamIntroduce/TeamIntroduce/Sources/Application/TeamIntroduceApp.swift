@@ -87,13 +87,13 @@ struct TeamIntroduceApp: App {
             ),
             TeamMember(
                 name: "홍석현",
-                imageName: "person.circle.fill",
+                imageName: "shEmoji",
                 role: "iOS Developer",
                 mbti: .enfj,
-                introduction: "안녕하세요! 열정적인 iOS 개발자입니다.",
-                strengths: ["SwiftUI", "Combine", "Swift Concurrency", "MVVM Architecture"],
-                blogLink: "https://blog.example.com/hong",
-                collaborationStyle: "적극적 소통, 코드 리뷰, 팀 리딩, 지식 공유"
+                introduction: "디버깅을 잘하는 개발자가 되고 싶습니다~! 😄",
+                strengths: ["TCA", "Swift Concurrency", "Clean Architecture"],
+                blogLink: "https://velog.io/@gustjrghd/posts",
+                collaborationStyle: "코드 리뷰, 적극적 의사 소통"
             )
         ]
     }
