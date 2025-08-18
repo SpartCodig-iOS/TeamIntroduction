@@ -16,18 +16,11 @@ struct IntroductionRowView: View {
 
   var body: some View {
     HStack {
-      Circle()
-        .fill(.staticWhite)
-        .frame(width: 42, height: 42)
-        .shadow(color: .shadowDefault, radius: 4)
-        .overlay {
-          Image(model.imageName)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 30, height: 30)
-        }
-
-
+      Image(model.imageName) 
+          .resizable()
+          .scaledToFill()
+          .frame(width: 42, height: 42)
+          .clipShape(Circle())
       VStack(alignment: .leading, spacing: 4) {
         HStack(spacing: 4) {
           Text(model.name)

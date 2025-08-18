@@ -15,11 +15,10 @@ struct MemberProfileView: View {
 
       VStack(spacing: 7) {
         Image(profile.imageName)
-          .resizable()
-          .scaledToFit()
-          .frame(width: 40, height: 40)
-          .clipShape(Circle())
-          .shadow(color: .shadowDefault, radius: 4)
+            .resizable()
+            .scaledToFill()
+            .frame(width: 50, height: 50)
+            .clipShape(Circle())
 
         Text(profile.name)
           .pretendardFont(family: .regular, size: 13)
