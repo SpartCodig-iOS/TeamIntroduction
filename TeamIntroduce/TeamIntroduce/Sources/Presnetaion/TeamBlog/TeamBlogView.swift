@@ -89,19 +89,25 @@ extension TeamBlogView {
 
 
       VStack(spacing: 12) {
-        ForEach(Array(viewModel.blogs.indices), id: \.self) { index in
-            let blog = viewModel.blogs[index]
-          
-            blogListitem(
-                name: blog.name,
-                blogTitle: blog.blogTitle,
-                blogLink: blog.blogLink
-            ) { link in
-                viewModel.send(.presentWebView(url: link))
-            }
-            .staggeredAppear(index: index, currentMaxIndex: $viewModel.currentMaxIndex, baseDelay: 0.55, stepDelay: 0.3, hiddenYOffset: 60)
+        ForEach(Array(zip(viewModel.members.indices, viewModel.members)), id: \.1.id) { index, member in
+          blogListitem(
+            image: member.imageName,
+            name: member.name,
+            blogTitle: member.blogTitle,
+            blogLink: member.blogLink
+          ) { link in
+            viewModel.send(.presentWebView(url: link))
+          }
+          .staggeredAppear(
+            index: index,
+            currentMaxIndex: $viewModel.currentMaxIndex,
+            baseDelay: 0.55,
+            stepDelay: 0.3,
+            hiddenYOffset: 60
+          )
         }
       }
+
     } else {
       ForEach(0..<3, id: \.self) { _ in
         SkeletonRowView()
@@ -111,6 +117,7 @@ extension TeamBlogView {
 
   @ViewBuilder
   private func blogListitem(
+    image: String,
     name: String,
     blogTitle: String,
     blogLink: String,
@@ -119,8 +126,15 @@ extension TeamBlogView {
     VStack {
       HStack {
         Circle()
-          .fill(.gray.opacity(0.3))
+          .fill(.staticWhite)
           .frame(width: 40, height: 40)
+          .shadow(color: .shadowDefault, radius: 4)
+          .overlay {
+            Image(image)
+              .resizable()
+              .scaledToFit()
+              .frame(width: 30, height: 30)
+          }
 
         VStack(alignment: .leading) {
           HStack {
@@ -179,6 +193,7 @@ extension TeamBlogView {
 }
 
 #Preview {
-  TeamBlogView(viewModel: .init())
+  @Previewable @Environment(\.modelContext) var modelContext
+  TeamBlogView(viewModel: .init(modelContext: modelContext ))
 }
 

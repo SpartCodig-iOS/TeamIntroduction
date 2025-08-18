@@ -52,7 +52,7 @@ extension IntorduceCoordinatorView {
       TeamIntroduceView(coordinator: coordinator)
         .navigationBarBackButtonHidden()
     case .teamBlog:
-      TeamBlogView(viewModel: .init(coordinator: coordinator))
+        TeamBlogView(viewModel: .init(modelContext: modelContext, coordinator: coordinator))
         .navigationBarBackButtonHidden()
 
     case .webView(let url):

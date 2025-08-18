@@ -7,76 +7,82 @@
 
 import SwiftUI
 import Combine
+import SwiftData
 
 @MainActor
 @Observable
 final class TeamBlogViewModel {
+  // MARK: - Properties
+
   private(set) var isLoading = false
   var currentMaxIndex: Int = -1
+  var members: [TeamMember] = []
 
-  // 라우팅
+  private let modelContext: ModelContext
   private let route: (IntroduceCoordinator.Action) -> Void
   private let goBack: () -> Void
 
-  let blogs: [BlogItem] = [
-    .init(name: "김민희",
-          blogTitle: "모바일개발과 크로스플랫폼 기술을 공유합니다",
-          blogLink: "https://0minnie0.tistory.com/"),
-    .init(name: "서원지",
-          blogTitle: "모바일개발과 크로스플랫폼 기술을 공유합니다",
-          blogLink: "https://velog.io/@suhwj/posts"),
-    .init(name: "홍석현",
-          blogTitle: "모바일개발과 크로스플랫폼 기술을 공유합니다",
-          blogLink: "https://velog.io/@gustjrghd/posts")
-  ]
 
   // MARK: - Init
+
   init(
+    modelContext: ModelContext,
     route: @escaping (IntroduceCoordinator.Action) -> Void = { _ in },
     goBack: @escaping () -> Void = {}
   ) {
+    self.modelContext = modelContext
     self.route = route
     self.goBack = goBack
   }
 
   // 코디네이터 주입 편의 생성자
-  convenience init(coordinator: IntroduceCoordinator?) {
+  convenience init(modelContext: ModelContext, coordinator: IntroduceCoordinator?) {
     if let coordinator {
       self.init(
+        modelContext: modelContext,
         route: { [weak coordinator] action in coordinator?.send(action) },
         goBack: { [weak coordinator] in coordinator?.goBack() }
       )
     } else {
-      self.init()
+      self.init(modelContext: modelContext)
     }
   }
 
-  // MARK: - Action
+  // MARK: - Action Handling
+
   enum Action {
     case onAppear
     case refresh
     case presentWebView(url: String)
-    case backToRoot                       
+    case backToRoot
+    case fetchData
   }
 
-  // MARK: - Single entrypoint
   func send(_ action: Action) {
     switch action {
-    case .onAppear, .refresh:
-      Task { await fetchIntroductions() }
+      case .onAppear, .refresh:
+        Task { await fetchIntroductions() }
+      case .presentWebView(let url):
+        route(.present(.webView(url: url)))
+      case .backToRoot:
+        goBack()
 
-    case .presentWebView(let url):
-      route(.present(.webView(url: url)))
-
-    case .backToRoot:
-      goBack()
+      case .fetchData:
+        let descriptor = FetchDescriptor<TeamMember>()
+        do {
+          self.members = try modelContext.fetch(descriptor) // members는 [TeamMember] 타입!
+        } catch {
+          print("Failed to fetch members: \(error)")
+        }
     }
   }
 
-  // MARK: - Private
+  // MARK: - Private Methods
+
   private func fetchIntroductions() async {
     isLoading = true
     defer { isLoading = false }
     try? await Task.sleep(for: .seconds(0.3))
+    send(.fetchData)
   }
 }
