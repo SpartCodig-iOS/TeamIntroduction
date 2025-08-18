@@ -89,7 +89,7 @@ struct TeamIntroduceApp: App {
       ),
       TeamMember(
         name: "홍석현",
-        imageName: "shEmojil",
+        imageName: "shEmoji",
         role: "iOS Developer",
         mbti: .enfj,
         introduction: "안녕하세요! 열정적인 iOS 개발자입니다.",

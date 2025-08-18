@@ -68,7 +68,7 @@ final class TeamBlogViewModel {
         goBack()
 
       case .fetchData:
-        let descriptor = FetchDescriptor<TeamMember>()
+        let descriptor = FetchDescriptor<TeamMember>(sortBy: [SortDescriptor(\.name, order: .forward)])
         do {
           self.members = try modelContext.fetch(descriptor) // members는 [TeamMember] 타입!
         } catch {
