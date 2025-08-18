@@ -66,7 +66,7 @@ struct TeamIntroduceApp: App {
     return [
       TeamMember(
         name: "김민희",
-        imageName: "person.crop.circle",
+        imageName: "profileImageMinHee",
         role: "iOS Developer",
         mbti: .estp,
         introduction: "캠프 후 되고 싶은 나의 모습 혹은 미래의 나의 모습을 한마디로 적어보세요! 생생하게 꿈꾸면 이루어진답니다!",
@@ -89,7 +89,7 @@ struct TeamIntroduceApp: App {
       ),
       TeamMember(
         name: "홍석현",
-        imageName: "person.circle.fill",
+        imageName: "shEmojil",
         role: "iOS Developer",
         mbti: .enfj,
         introduction: "안녕하세요! 열정적인 iOS 개발자입니다.",
