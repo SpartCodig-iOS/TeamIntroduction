@@ -66,13 +66,13 @@ struct TeamIntroduceApp: App {
         return [
             TeamMember(
                 name: "김민희",
-                imageName: "person.crop.circle",
+                imageName: "profileImageMinHee",
                 role: "iOS Developer",
                 mbti: .estp,
-                introduction: "캠프 후 되고 싶은 나의 모습 혹은 미래의 나의 모습을 한마디로 적어보세요! 생생하게 꿈꾸면 이루어진답니다!",
-                strengths: ["UIKit", "Core Data", "Auto Layout", "Unit Testing"],
+                introduction: "안녕하세요 다같이 열심히해서 좋은 결과 가져가면 좋을 것 같습니다 잘부탁드립니다~",
+                strengths: ["꼼꼼함", "긍정적", "책임감", "꾸준함"],
                 blogLink: "https://0minnie0.tistory.com/",
-                collaborationStyle: "세심한 검토, 문서화 중시, 체계적 정리, 품질 관리",
+                collaborationStyle: "명확한 목표 설정과 주기적인 진행 상황 공유를 통해 함께 좋은 결과를 얻을 수 있도록 기여하고 싶습니다.",
                 isLeader: true
             ),
             TeamMember(
